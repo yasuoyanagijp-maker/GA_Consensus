@@ -50,13 +50,36 @@ async function json<T>(res: Promise<Response>): Promise<T> {
 }
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/+$/, "") ?? "";
+const READ_ONLY = (import.meta.env.VITE_READ_ONLY as string | undefined) === "1";
 const apiUrl = (path: string) => `${API_BASE_URL}${path}`;
+type StaticBundle = { files: { name: string; content: string }[] };
+let staticBundlePromise: Promise<StaticBundle> | null = null;
+const getStaticBundle = async () => {
+  staticBundlePromise ??= json<StaticBundle>(fetch("./static-data/ga-consensus-files.json"));
+  return staticBundlePromise;
+};
 
 export const api = {
-  health: () => json<{ ok: boolean; zoteroConfigured: boolean }>(fetch(apiUrl("/api/health"))),
-  listFiles: () => json<{ files: string[] }>(fetch(apiUrl("/api/files"))),
-  getFile: (name: string) =>
-    json<{ name: string; content: string }>(fetch(apiUrl(`/api/files/${encodeURIComponent(name)}`))),
+  health: async () => {
+    if (READ_ONLY) return { ok: true, zoteroConfigured: false };
+    return json<{ ok: boolean; zoteroConfigured: boolean }>(fetch(apiUrl("/api/health")));
+  },
+  listFiles: async () => {
+    if (READ_ONLY) {
+      const bundle = await getStaticBundle();
+      return { files: bundle.files.map((f) => f.name) };
+    }
+    return json<{ files: string[] }>(fetch(apiUrl("/api/files")));
+  },
+  getFile: async (name: string) => {
+    if (READ_ONLY) {
+      const bundle = await getStaticBundle();
+      const target = bundle.files.find((f) => f.name === name);
+      if (!target) throw new Error(`ファイルが見つかりません: ${name}`);
+      return { name: target.name, content: target.content };
+    }
+    return json<{ name: string; content: string }>(fetch(apiUrl(`/api/files/${encodeURIComponent(name)}`)));
+  },
   saveFile: (name: string, content: string) =>
     json<{ ok: boolean }>(
       fetch(apiUrl(`/api/files/${encodeURIComponent(name)}`), {
