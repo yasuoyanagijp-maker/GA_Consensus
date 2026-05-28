@@ -1,0 +1,16 @@
+.DS_Store
+venv/
+scratch/
+**/node_modules/
+**/dist/
+**/.env.local
+*.log
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+ga-consensus-editor/node_modules/
+ga-consensus-editor/dist/
+ga-consensus-editor/.env
+ga-consensus-editor/.env.local

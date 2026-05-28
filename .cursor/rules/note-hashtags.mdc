@@ -1,0 +1,21 @@
+---
+description: note記事のハッシュタグ設計ルール（著者名タグ禁止など）
+globs: 01_drafts/**/*.md,02_published/note/**/*.md,04_templates/**/*.md
+alwaysApply: false
+---
+
+# note ハッシュタグルール
+
+## 禁止
+
+- **著者名タグは入れない**（`#柳靖雄` `#柳 靖雄` および同義の表記すべて）
+
+## 推奨
+
+- 5個以内（`03_assets/publication_checklist.md` の note 項目に準拠）
+- テーマ・疾患名・検査・分野（例：`#眼科` `#網膜` `#視力`）
+- `#眼科` は眼科テーマの記事では原則含める
+
+## 公開前
+
+`publication-checker` 実行時、著者名タグの有無を必ず確認する。

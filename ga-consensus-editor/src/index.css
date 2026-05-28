@@ -1,0 +1,96 @@
+:root {
+  --bg: #f4f2ee;
+  --surface: #ffffff;
+  --border: #d8d2c8;
+  --text: #1c1917;
+  --muted: #6b6560;
+  --accent: #1d4f3f;
+  --accent-soft: #e8f2ee;
+  --warn: #b45309;
+  --danger: #b91c1c;
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.citation-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 1px dotted var(--accent);
+}
+
+.citation-link:hover {
+  background: var(--accent-soft);
+}
+
+.citation-link.unlinked {
+  color: var(--warn);
+  border-bottom-color: var(--warn);
+}
+
+/* MDEditor overrides */
+.w-md-editor {
+  --md-editor-bg-color: var(--surface) !important;
+  --md-editor-border-color: var(--border) !important;
+}
+
+.w-md-editor-toolbar {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.wmde-markdown {
+  font-family: inherit !important;
+  font-size: 15px !important;
+  background: var(--surface) !important;
+}
+
+.wmde-markdown h1 {
+  font-size: 1.5rem !important;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.25rem;
+}
+
+.wmde-markdown h2 {
+  font-size: 1.2rem !important;
+  margin-top: 1.5rem !important;
+}
+
+.wmde-markdown h3 {
+  font-size: 1.05rem !important;
+}
+
+.wmde-markdown em {
+  font-style: italic;
+}
+
+.wmde-markdown strong {
+  font-weight: 700;
+}
