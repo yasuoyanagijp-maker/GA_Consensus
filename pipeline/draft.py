@@ -2,7 +2,7 @@
 
 Composes the style_engine guides + synthesis + fact-check into a system/context prompt
 and produces the chapter draft with [!FIGURE] placeholders and a Vancouver reference list.
-Output lands in 01_drafts/<slug>_textbook.md so ga-consensus-editor can open it.
+Output lands in content/drafts/<slug>_textbook.md so app/editor can open it.
 """
 from __future__ import annotations
 

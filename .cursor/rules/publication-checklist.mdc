@@ -1,6 +1,6 @@
 ---
 description: 文章作成の最終工程で公開前チェックリストを必ず実行する
-globs: 01_drafts/**/*.md,02_published/**/*.md,04_templates/**/*.md
+globs: content/drafts/**/*.md,content/published/**/*.md,content/templates/**/*.md
 alwaysApply: false
 ---
 
@@ -10,14 +10,14 @@ alwaysApply: false
 
 ## 手順
 
-1. `03_assets/publication_checklist.md` を読み、全項目を確認する
+1. `content/assets/publication_checklist.md` を読み、全項目を確認する
 2. `.agents/publication-checker.md`（`publication-checker` エージェント）の出力フォーマットに従い、各項目を PASS / FAIL / N/A で判定する
 3. FAIL が1件でもあれば修正し、再チェックする
 4. 全項目 PASS（N/A 可）になるまで「公開可」と宣言しない
 
 ## チェックリスト更新
 
-原本は `03_assets/publication_checklist.docx`。更新後は以下で md を再生成する:
+原本は `content/assets/publication_checklist.docx`。更新後は以下で md を再生成する:
 
 ```bash
 python3 scratch/import_publication_checklist.py

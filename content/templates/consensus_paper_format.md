@@ -3,7 +3,7 @@
 本リポジトリで「コンセンサス論文」「コンセンサス・ステートメント」「エキスパート・コンセンサス・リポート」の校正・執筆を行う際の標準フォーマット。  
 Cursor ルール `.cursor/rules/consensus-paper-editing.mdc` と併用する。
 
-参照原稿: `01_drafts/ga_consensus/ga_consensus_draft.md`
+参照原稿: `content/drafts/ga_consensus/ga_consensus_draft.md`
 
 ---
 

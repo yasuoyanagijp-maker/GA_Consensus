@@ -1,4 +1,4 @@
-"""Shared reference model + Vancouver formatter (ported from ga-consensus-editor)."""
+"""Shared reference model + Vancouver formatter (ported from app/editor)."""
 from __future__ import annotations
 
 import json
@@ -21,7 +21,7 @@ class Reference:
     source: str = "pubmed"  # pubmed | rag
 
     def vancouver(self) -> str:
-        """Mirror of formatVancouver() in ga-consensus-editor/server/index.ts."""
+        """Mirror of formatVancouver() in app/editor/server/index.ts."""
         authors = _format_authors(self.authors)
         title = (self.title or "").strip().rstrip(".")
         journal = (self.journal or "").strip().rstrip(".")

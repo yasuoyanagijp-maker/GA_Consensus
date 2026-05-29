@@ -52,7 +52,7 @@ def embed_figures(draft_md: str, figures: list[Figure]) -> str:
         out.append(draft_md[last : match.start()])
         fig = by_index.get(i)
         if fig and fig.image_path:
-            rel = "../" + fig.image_path  # 01_drafts -> repo root
+            rel = "../" + fig.image_path  # content/drafts -> repo root
             out.append(f"\n![{fig.title}]({rel})\n\n{fig.caption_ja}\n")
         elif fig:
             caption_q = fig.caption_ja.replace("\n", "\n> ")
@@ -99,7 +99,7 @@ _COI_HINTS = ["COI", "利益相反", "開示"]
 
 
 def publication_gate(text: str) -> GateResult:
-    """Automated structural subset of 03_assets/publication_checklist.md.
+    """Automated structural subset of content/assets/publication_checklist.md.
 
     Catches the mechanical FAILs (missing references / disclaimer / citations).
     Substantive medical judgment is still left to the human/LLM reviewer.

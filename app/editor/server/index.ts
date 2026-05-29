@@ -17,12 +17,13 @@ const PORT = Number(process.env.PORT) || 3847;
 const ZOTERO_USER_ID = process.env.ZOTERO_USER_ID ?? "";
 const ZOTERO_API_KEY = process.env.ZOTERO_API_KEY ?? "";
 const ROOT = path.join(__dirname, "..");
-const GA_DIR = path.resolve(ROOT, process.env.GA_CONSENSUS_DIR ?? "../01_drafts/ga_consensus");
-// Repo root = parent of ga-consensus-editor. The pipeline + venv live here.
-const REPO_ROOT = path.resolve(__dirname, "../..");
+const GA_DIR = path.resolve(ROOT, process.env.GA_CONSENSUS_DIR ?? "../../content/drafts/ga_consensus");
+// Repo root is two levels above the editor (app/editor/server -> app/editor -> app -> repo root).
+// The pipeline + venv live at the repo root.
+const REPO_ROOT = path.resolve(__dirname, "../../..");
 const VENV_PYTHON = path.join(REPO_ROOT, "venv", "bin", "python");
 const PIPELINE_OUT_DIR = path.join(REPO_ROOT, "pipeline", "out");
-const DRAFTS_DIR = path.join(REPO_ROOT, "01_drafts");
+const DRAFTS_DIR = path.join(REPO_ROOT, "content", "drafts");
 const LINKS_FILE = path.join(GA_DIR, ".zotero-citation-map.json");
 const CANDIDATES_FILE = path.join(GA_DIR, ".zotero-unresolved-candidates.json");
 

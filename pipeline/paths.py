@@ -10,10 +10,10 @@ from pathlib import Path
 PIPELINE_DIR = Path(__file__).resolve().parent
 ROOT = PIPELINE_DIR.parent
 
-DRAFTS_DIR = ROOT / "01_drafts"
-PUBLISHED_DIR = ROOT / "02_published"
-ASSETS_DIR = ROOT / "03_assets"
-TEMPLATES_DIR = ROOT / "04_templates"
+DRAFTS_DIR = ROOT / "content" / "drafts"
+PUBLISHED_DIR = ROOT / "content" / "published"
+ASSETS_DIR = ROOT / "content" / "assets"
+TEMPLATES_DIR = ROOT / "content" / "templates"
 OUT_DIR = PIPELINE_DIR / "out"
 CONFIG_DIR = PIPELINE_DIR / "config"
 BRIEFS_DIR = PIPELINE_DIR / "briefs"
@@ -50,7 +50,7 @@ def load_env() -> dict[str, str]:
     """Load pipeline/.env.local, then fall back to the editor's .env.local for Zotero keys."""
     env: dict[str, str] = {}
     # Editor env first (so pipeline/.env.local can override), then pipeline env.
-    env.update(_parse_env_file(ROOT / "ga-consensus-editor" / ".env.local"))
+    env.update(_parse_env_file(ROOT / "app" / "editor" / ".env.local"))
     env.update(_parse_env_file(PIPELINE_DIR / ".env.local"))
     # Real process env wins over files.
     for key in list(env.keys()):
