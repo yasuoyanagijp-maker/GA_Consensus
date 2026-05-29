@@ -1,1 +1,0 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/referencelinker.tsx","./src/components/requirementsmappanel.tsx","./src/components/searchprogress.tsx","./src/components/zoteropanel.tsx","./src/lib/api.ts","./src/lib/markdown.ts","./src/lib/requirementsmap.ts"],"version":"5.9.3"}

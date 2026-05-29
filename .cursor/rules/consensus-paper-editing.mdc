@@ -1,12 +1,12 @@
 ---
 description: コンセンサス論文・コンセンサス・ステートメントの校正・執筆時に適用するフォーマットと文体ルール
-globs: "**/*consensus*.md,**/*コンセンサス*.md,01_drafts/ga_consensus/**/*.md,04_templates/consensus_paper_format.md"
+globs: "**/*consensus*.md,**/*コンセンサス*.md,content/drafts/ga_consensus/**/*.md,content/templates/consensus_paper_format.md"
 alwaysApply: false
 ---
 
 # コンセンサス論文校正
 
-ユーザーがコンセンサスペーパー・コンセンサス・ステートメント・エキスパート・コンセンサス・リポートの**校正・リライト・執筆**を依頼した場合、本ルールを**必ず**適用する。詳細は `04_templates/consensus_paper_format.md` を読み、参照原稿は `01_drafts/ga_consensus/ga_consensus_draft.md`。
+ユーザーがコンセンサスペーパー・コンセンサス・ステートメント・エキスパート・コンセンサス・リポートの**校正・リライト・執筆**を依頼した場合、本ルールを**必ず**適用する。詳細は `content/templates/consensus_paper_format.md` を読み、参照原稿は `content/drafts/ga_consensus/ga_consensus_draft.md`。
 
 ## 必須構成（この順）
 

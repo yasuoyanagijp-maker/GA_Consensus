@@ -1,7 +1,7 @@
-"""Push harvested references into Zotero so ga-consensus-editor can link citations.
+"""Push harvested references into Zotero so app/editor can link citations.
 
 Uses the Zotero write API with the same credentials as the editor
-(ga-consensus-editor/.env.local is read as a fallback).
+(app/editor/.env.local is read as a fallback).
 """
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ def _user_id() -> str:
     uid = paths.env("ZOTERO_USER_ID")
     if not uid or not paths.env("ZOTERO_API_KEY"):
         raise RuntimeError(
-            "ZOTERO_USER_ID / ZOTERO_API_KEY not set (pipeline/.env.local or ga-consensus-editor/.env.local)"
+            "ZOTERO_USER_ID / ZOTERO_API_KEY not set (pipeline/.env.local or app/editor/.env.local)"
         )
     return uid
 

@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, "..");
-const sourceDir = path.resolve(projectRoot, "..", "01_drafts", "ga_consensus");
+const sourceDir = path.resolve(projectRoot, "..", "..", "content", "drafts", "ga_consensus");
 const outDir = path.resolve(projectRoot, "public", "static-data");
 const outFile = path.resolve(outDir, "ga-consensus-files.json");
 

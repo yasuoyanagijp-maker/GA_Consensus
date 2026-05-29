@@ -212,7 +212,7 @@ export default function App() {
       const res = await fetch(api.pipelineArtifactUrl(runId, absPath));
       if (!res.ok) throw new Error(await res.text());
       const text = await res.text();
-      // Studio drafts live in 01_drafts/ (not the editor's ga_consensus dir), so load
+      // Studio drafts live in content/drafts/ (not the editor's ga_consensus dir), so load
       // them as a preview: currentFile=null keeps the Save button disabled.
       setCurrentFile(null);
       setContent(text);
@@ -294,7 +294,7 @@ export default function App() {
       <header className="toolbar">
         <div className="toolbar__brand">
           <span className="logo">GA Consensus Editor</span>
-          <span className="muted small">01_drafts/ga_consensus</span>
+          <span className="muted small">content/drafts/ga_consensus</span>
         </div>
         <nav className="top-tabs">
           <button

@@ -1,6 +1,6 @@
 # GA Consensus Editor
 
-`01_drafts/ga_consensus/` 内の `ga_*.md` を、**プレビューしながら編集**し、**Zotero** の文献（Abstract / PDF）を参照するローカル用エディタです。
+`content/drafts/ga_consensus/` 内の `ga_*.md` を、**プレビューしながら編集**し、**Zotero** の文献（Abstract / PDF）を参照するローカル用エディタです。
 
 ## 機能
 
@@ -13,7 +13,7 @@
 ## セットアップ
 
 ```bash
-cd ga-consensus-editor
+cd app/editor
 cp .env.example .env.local
 # .env.local に ZOTERO_USER_ID と ZOTERO_API_KEY を記入
 npm install
@@ -104,9 +104,9 @@ http://localhost:3847 で UI + API
 
 | ファイル | 内容 |
 |----------|------|
-| `01_drafts/ga_consensus/*.md` | 原稿本文（「保存」で上書き） |
-| `01_drafts/ga_consensus/.zotero-citation-map.json` | 章ごとの `[番号]` → Zotero 項目キー |
-| `01_drafts/ga_consensus/.zotero-unresolved-candidates.json` | 未解決文献ごとの候補一覧（緩い検索結果） |
+| `content/drafts/ga_consensus/*.md` | 原稿本文（「保存」で上書き） |
+| `content/drafts/ga_consensus/.zotero-citation-map.json` | 章ごとの `[番号]` → Zotero 項目キー |
+| `content/drafts/ga_consensus/.zotero-unresolved-candidates.json` | 未解決文献ごとの候補一覧（緩い検索結果） |
 
 ---
 
@@ -114,4 +114,4 @@ http://localhost:3847 で UI + API
 
 - **文献が0件のまま** … 検索語が著者名だけになっていないか確認。タイトルの一部を入力して「再検索」
 - **API エラー** … `npm run dev` で server と client の両方が起動しているか、`.env.local` の Zotero ID/キーを確認
-- **章が読めない** … `GA_CONSENSUS_DIR` が `../01_drafts/ga_consensus`（`ga-consensus-editor` からの相対パス）になっているか確認
+- **章が読めない** … `GA_CONSENSUS_DIR` が `../../content/drafts/ga_consensus`（`app/editor` からの相対パス）になっているか確認

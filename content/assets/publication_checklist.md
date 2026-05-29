@@ -1,6 +1,6 @@
 # 公開前チェックリスト
 
-> 出典: `03_assets/publication_checklist.docx`（自動変換）
+> 出典: `content/assets/publication_checklist.docx`（自動変換）
 > 文章作成の**最終工程**で必ず全項目を確認すること。
 
 実名専門家発信チェックリスト

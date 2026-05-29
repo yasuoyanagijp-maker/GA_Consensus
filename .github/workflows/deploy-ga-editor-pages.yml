@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "ga-consensus-editor/**"
+      - "app/editor/**"
       - ".github/workflows/deploy-ga-editor-pages.yml"
   workflow_dispatch:
 
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ga-consensus-editor
+        working-directory: app/editor
     env:
       VITE_BASE_PATH: /${{ github.event.repository.name }}/
       VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: ga-consensus-editor/package-lock.json
+          cache-dependency-path: app/editor/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -47,7 +47,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ga-consensus-editor/dist
+          path: app/editor/dist
 
   deploy:
     needs: build
