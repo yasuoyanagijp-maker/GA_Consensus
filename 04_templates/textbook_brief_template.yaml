@@ -1,0 +1,22 @@
+# 教科書 章ブリーフ テンプレート (Textbook Studio パイプライン入力)
+# 使い方: cp してキーワード等を埋め、次で実行:
+#   ./venv/bin/python -m pipeline.run --brief <このファイル>
+
+title: ""                  # 章タイトル（日本語・必須）
+slug: ""                   # 出力ファイル名スラッグ（省略時は title から自動生成）
+
+keywords:                  # PubMed/RAG 検索キーワード（英語推奨・1つ以上必須）
+  - ""
+
+outline:                   # 想定章構成（見出し。draft のスキャフォルドに使用）
+  - ""
+
+style: textbook            # textbook | report
+language: ja
+max_results: 25            # PubMed 取得上限
+import_to_zotero: true     # false なら literature.json のみ
+zotero_collection: ""      # 任意: 追加先 Zotero コレクションキー
+
+# RAG リトリーバの絞り込み（任意。config/backends.json の既定を上書き）
+rag_year_filter: ""        # 例: "2024"（指定年のチャンクのみ）
+rag_source_filter: ""      # 例: "zotero" | "chunks"（ローカルPDF）
