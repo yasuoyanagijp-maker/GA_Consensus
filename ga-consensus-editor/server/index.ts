@@ -1,8 +1,12 @@
+import { spawn, type ChildProcessWithoutNullStreams } from "child_process";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import fs from "fs/promises";
+import { createReadStream } from "fs";
 import path from "path";
+import readline from "readline";
+import { randomUUID } from "crypto";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -14,6 +18,11 @@ const ZOTERO_USER_ID = process.env.ZOTERO_USER_ID ?? "";
 const ZOTERO_API_KEY = process.env.ZOTERO_API_KEY ?? "";
 const ROOT = path.join(__dirname, "..");
 const GA_DIR = path.resolve(ROOT, process.env.GA_CONSENSUS_DIR ?? "../01_drafts/ga_consensus");
+// Repo root = parent of ga-consensus-editor. The pipeline + venv live here.
+const REPO_ROOT = path.resolve(__dirname, "../..");
+const VENV_PYTHON = path.join(REPO_ROOT, "venv", "bin", "python");
+const PIPELINE_OUT_DIR = path.join(REPO_ROOT, "pipeline", "out");
+const DRAFTS_DIR = path.join(REPO_ROOT, "01_drafts");
 const LINKS_FILE = path.join(GA_DIR, ".zotero-citation-map.json");
 const CANDIDATES_FILE = path.join(GA_DIR, ".zotero-unresolved-candidates.json");
 
@@ -422,6 +431,176 @@ app.get("/api/zotero/item/:key/pdf", async (req, res) => {
     res.send(buffer);
   } catch (e) {
     res.status(500).json({ error: String(e) });
+  }
+});
+
+// ---------------------------------------------------------------- Textbook Studio pipeline
+type ProgressEvent = Record<string, unknown>;
+type PipelineRun = {
+  id: string;
+  child: ChildProcessWithoutNullStreams;
+  events: ProgressEvent[];
+  clients: Set<express.Response>;
+  finished: boolean;
+  exitCode: number | null;
+};
+const pipelineRuns = new Map<string, PipelineRun>();
+
+type PipelineRunBody = {
+  keywords?: string[] | string;
+  title?: string;
+  outline?: string[] | string;
+  maxResults?: number;
+  figures?: boolean;
+  zotero?: boolean;
+  rag?: boolean;
+  ragYear?: string;
+  ragSource?: "zotero" | "chunks" | "";
+  llmProvider?: string;
+  imageProvider?: string;
+};
+
+function buildPipelineArgs(body: PipelineRunBody): string[] {
+  const args = ["-m", "pipeline.run", "--json-progress"];
+  const keywords = Array.isArray(body.keywords)
+    ? body.keywords
+    : String(body.keywords ?? "")
+        .split(/[\n,;]+/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+  for (const kw of keywords) args.push("--keyword", kw);
+  if (body.title) args.push("--title", String(body.title));
+  const outline = Array.isArray(body.outline)
+    ? body.outline
+    : String(body.outline ?? "")
+        .split(/[\n;]+/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+  if (outline.length) args.push("--outline", outline.join(";"));
+  if (Number.isFinite(body.maxResults)) args.push("--max-results", String(body.maxResults));
+  args.push(body.figures === false ? "--no-figures" : "--figures");
+  args.push(body.zotero ? "--zotero" : "--no-zotero");
+  args.push(body.rag === false ? "--no-rag" : "--rag");
+  if (body.ragYear) args.push("--rag-year", String(body.ragYear));
+  if (body.ragSource) args.push("--rag-source", String(body.ragSource));
+  if (body.llmProvider) args.push("--llm-provider", String(body.llmProvider));
+  if (body.imageProvider) args.push("--image-provider", String(body.imageProvider));
+  return args;
+}
+
+function pushEvent(run: PipelineRun, ev: ProgressEvent) {
+  run.events.push(ev);
+  const payload = `data: ${JSON.stringify(ev)}\n\n`;
+  for (const res of run.clients) res.write(payload);
+}
+
+app.post("/api/pipeline/run", (req, res) => {
+  try {
+    const body = req.body as PipelineRunBody;
+    const keywords = Array.isArray(body.keywords) ? body.keywords : String(body.keywords ?? "").trim();
+    if (!keywords || (Array.isArray(keywords) && keywords.length === 0)) {
+      res.status(400).json({ error: "keywords required" });
+      return;
+    }
+    const args = buildPipelineArgs(body);
+    const child = spawn(VENV_PYTHON, args, { cwd: REPO_ROOT });
+    const runId = randomUUID();
+    const run: PipelineRun = {
+      id: runId,
+      child,
+      events: [],
+      clients: new Set(),
+      finished: false,
+      exitCode: null,
+    };
+    pipelineRuns.set(runId, run);
+
+    const rl = readline.createInterface({ input: child.stdout });
+    rl.on("line", (line) => {
+      const trimmed = line.trim();
+      if (!trimmed.startsWith("{")) return;
+      try {
+        pushEvent(run, JSON.parse(trimmed) as ProgressEvent);
+      } catch {
+        /* ignore non-JSON stdout */
+      }
+    });
+    child.stderr.on("data", () => {
+      /* human logs; intentionally not streamed to keep events clean */
+    });
+    child.on("close", (code) => {
+      run.finished = true;
+      run.exitCode = code;
+      const hasDone = run.events.some((e) => e.event === "done");
+      if (!hasDone) {
+        pushEvent(run, { event: "done", error: `process exited with code ${code}` });
+      }
+      pushEvent(run, { event: "closed", exitCode: code });
+      for (const c of run.clients) c.end();
+      run.clients.clear();
+    });
+
+    res.json({ runId });
+  } catch (e) {
+    res.status(500).json({ error: String(e) });
+  }
+});
+
+app.get("/api/pipeline/runs/:runId/events", (req, res) => {
+  const run = pipelineRuns.get(req.params.runId);
+  if (!run) {
+    res.status(404).json({ error: "run not found" });
+    return;
+  }
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache");
+  res.setHeader("Connection", "keep-alive");
+  res.flushHeaders?.();
+
+  // Replay buffered events so a late subscriber still sees the full history.
+  for (const ev of run.events) res.write(`data: ${JSON.stringify(ev)}\n\n`);
+
+  if (run.finished) {
+    res.end();
+    return;
+  }
+  run.clients.add(res);
+  req.on("close", () => run.clients.delete(res));
+});
+
+app.get("/api/pipeline/runs/:runId/artifact", async (req, res) => {
+  try {
+    const rel = String(req.query.path ?? "");
+    if (!rel) {
+      res.status(400).json({ error: "path required" });
+      return;
+    }
+    const resolved = path.resolve(rel);
+    const underOut = resolved === PIPELINE_OUT_DIR || resolved.startsWith(PIPELINE_OUT_DIR + path.sep);
+    const underDrafts = resolved === DRAFTS_DIR || resolved.startsWith(DRAFTS_DIR + path.sep);
+    if (!underOut && !underDrafts) {
+      res.status(403).json({ error: "path outside allowed directories" });
+      return;
+    }
+    await fs.access(resolved);
+    const download = String(req.query.download ?? "") === "1";
+    if (download) {
+      res.download(resolved, path.basename(resolved));
+      return;
+    }
+    const ext = path.extname(resolved).toLowerCase();
+    const types: Record<string, string> = {
+      ".md": "text/markdown; charset=utf-8",
+      ".json": "application/json; charset=utf-8",
+      ".txt": "text/plain; charset=utf-8",
+      ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      ".png": "image/png",
+    };
+    res.setHeader("Content-Type", types[ext] ?? "application/octet-stream");
+    createReadStream(resolved).pipe(res);
+  } catch (e) {
+    res.status(404).json({ error: String(e) });
   }
 });
 

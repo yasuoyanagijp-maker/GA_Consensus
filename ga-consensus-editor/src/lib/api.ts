@@ -143,4 +143,61 @@ export const api = {
   getZoteroItem: (key: string) =>
     json<ZoteroItemDetail>(fetch(apiUrl(`/api/zotero/item/${encodeURIComponent(key)}`))),
   pdfUrl: (key: string) => apiUrl(`/api/zotero/item/${key}/pdf`),
+
+  // --- Textbook Studio pipeline ---
+  runPipeline: (body: PipelineRunRequest) =>
+    json<{ runId: string }>(
+      fetch(apiUrl("/api/pipeline/run"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }),
+    ),
+  pipelineEventsUrl: (runId: string) => apiUrl(`/api/pipeline/runs/${encodeURIComponent(runId)}/events`),
+  pipelineArtifactUrl: (runId: string, absPath: string, download = false) =>
+    apiUrl(
+      `/api/pipeline/runs/${encodeURIComponent(runId)}/artifact?path=${encodeURIComponent(absPath)}` +
+        (download ? "&download=1" : ""),
+    ),
+};
+
+export type PipelineRunRequest = {
+  keywords: string;
+  title?: string;
+  outline?: string;
+  maxResults?: number;
+  figures?: boolean;
+  zotero?: boolean;
+  rag?: boolean;
+  ragYear?: string;
+  ragSource?: "" | "zotero" | "chunks";
+  llmProvider?: string;
+  imageProvider?: string;
+};
+
+export type PipelineArtifacts = {
+  outDir?: string | null;
+  literature?: string | null;
+  synthesis?: string | null;
+  factcheck?: string | null;
+  draft?: string | null;
+  figures?: string | null;
+  finalMd?: string | null;
+  docx?: string | null;
+  pptx?: string | null;
+  gateReport?: string | null;
+};
+
+export type PipelineEvent = {
+  event?: "run" | "stage" | "done" | "closed";
+  stage?: string;
+  status?: "start" | "done" | "skipped" | "error";
+  detail?: string;
+  slug?: string;
+  title?: string;
+  stages?: string[];
+  artifacts?: PipelineArtifacts;
+  gate_passed?: boolean;
+  error?: string;
+  exitCode?: number | null;
 };

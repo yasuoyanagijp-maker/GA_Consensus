@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ZoteroPanel } from "./components/ZoteroPanel";
 import { ReferenceLinker } from "./components/ReferenceLinker";
 import { RequirementsMapPanel } from "./components/RequirementsMapPanel";
+import { StudioPanel } from "./components/StudioPanel";
 import { api, type CitationLinkMap } from "./lib/api";
 import { extractCitationNumbers, linkifyCitationsSimple, parseReferences } from "./lib/markdown";
 import { REQUIREMENT_MAP } from "./lib/requirementsMap";
@@ -23,6 +24,7 @@ export default function App() {
   const [links, setLinks] = useState<CitationLinkMap>({});
   const [zoteroKey, setZoteroKey] = useState<string | null>(null);
   const [sidebar, setSidebar] = useState<"refs" | "zotero" | "requirements">(READ_ONLY ? "requirements" : "refs");
+  const [view, setView] = useState<"editor" | "studio">("editor");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
   const [editorSplitPercent, setEditorSplitPercent] = useState<number>(() => {
@@ -204,6 +206,24 @@ export default function App() {
     }
   };
 
+  const openStudioDraft = useCallback(async (runId: string, absPath: string) => {
+    try {
+      setStatus("ドラフトを読み込み中…");
+      const res = await fetch(api.pipelineArtifactUrl(runId, absPath));
+      if (!res.ok) throw new Error(await res.text());
+      const text = await res.text();
+      // Studio drafts live in 01_drafts/ (not the editor's ga_consensus dir), so load
+      // them as a preview: currentFile=null keeps the Save button disabled.
+      setCurrentFile(null);
+      setContent(text);
+      setSavedContent(text);
+      setView("editor");
+      setStatus(`プレビュー: ${absPath.split("/").pop()}（保存はエディタ管理ファイルのみ）`);
+    } catch (e) {
+      setStatus(`ドラフト読み込みエラー: ${e}`);
+    }
+  }, []);
+
   const handlePreviewClick = (e: React.MouseEvent) => {
     const anchor = (e.target as HTMLElement).closest("a");
     if (!anchor || !currentFile) return;
@@ -276,28 +296,56 @@ export default function App() {
           <span className="logo">GA Consensus Editor</span>
           <span className="muted small">01_drafts/ga_consensus</span>
         </div>
-        <select
-          value={currentFile ?? ""}
-          onChange={(e) => {
-            if (!READ_ONLY && dirty && !confirm("未保存の変更があります。切り替えますか？")) return;
-            loadFile(e.target.value);
-          }}
-          disabled={loading}
-        >
-          {orderedFiles.map((f) => (
-            <option key={f} value={f}>
-              {f}
-            </option>
-          ))}
-        </select>
-        {!READ_ONLY && (
-          <button type="button" className="btn primary" onClick={save} disabled={!dirty || !currentFile}>
-            保存 {dirty ? "*" : ""}
+        <nav className="top-tabs">
+          <button
+            type="button"
+            className={view === "editor" ? "tab active" : "tab"}
+            onClick={() => setView("editor")}
+          >
+            エディタ
           </button>
+          {!READ_ONLY && (
+            <button
+              type="button"
+              className={view === "studio" ? "tab active" : "tab"}
+              onClick={() => setView("studio")}
+            >
+              Textbook Studio
+            </button>
+          )}
+        </nav>
+        {view === "editor" && (
+          <>
+            <select
+              value={currentFile ?? ""}
+              onChange={(e) => {
+                if (!READ_ONLY && dirty && !confirm("未保存の変更があります。切り替えますか？")) return;
+                loadFile(e.target.value);
+              }}
+              disabled={loading}
+            >
+              {orderedFiles.map((f) => (
+                <option key={f} value={f}>
+                  {f}
+                </option>
+              ))}
+            </select>
+            {!READ_ONLY && (
+              <button type="button" className="btn primary" onClick={save} disabled={!dirty || !currentFile}>
+                保存 {dirty ? "*" : ""}
+              </button>
+            )}
+            {READ_ONLY && <span className="muted small">公開版: 閲覧専用（編集不可）</span>}
+          </>
         )}
-        {READ_ONLY && <span className="muted small">公開版: 閲覧専用（編集不可）</span>}
         <span className="status">{status}</span>
       </header>
+
+      {view === "studio" && !READ_ONLY ? (
+        <div className="studio-wrap">
+          <StudioPanel onOpenDraft={openStudioDraft} />
+        </div>
+      ) : (
 
       <div
         className="workspace"
@@ -420,6 +468,7 @@ export default function App() {
           </div>
         </aside>
       </div>
+      )}
     </div>
   );
 }
