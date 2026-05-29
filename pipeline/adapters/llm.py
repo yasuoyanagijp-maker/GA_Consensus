@@ -12,6 +12,7 @@ One interface, several providers selected via config/backends.json:
 from __future__ import annotations
 
 import json
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
@@ -183,7 +184,10 @@ class GoogleProAdapter(LLMAdapter):
         self.api_key = paths.env("GEMINI_API_KEY")
         self.model = paths.env("GEMINI_MODEL") or "gemini-2.5-pro"
         self.temperature = cfg.get("temperature", 0.4)
-        self.max_tokens = cfg.get("max_tokens", 4096)
+        # 2.5 "thinking" models spend output tokens on reasoning; give a generous
+        # budget so the visible answer is not truncated (env override wins).
+        env_max = paths.env("GEMINI_MAX_TOKENS")
+        self.max_tokens = int(env_max) if env_max else cfg.get("max_tokens", 8192)
         if not self.api_key:
             raise LLMError("GEMINI_API_KEY is not set in pipeline/.env.local")
 
@@ -196,22 +200,44 @@ class GoogleProAdapter(LLMAdapter):
             f"https://generativelanguage.googleapis.com/v1beta/models/"
             f"{self.model}:generateContent?key={self.api_key}"
         )
+        generation_config: dict = {
+            "temperature": self.temperature,
+            "maxOutputTokens": self.max_tokens,
+        }
+        # Disable "thinking" on 2.5 models so the full token budget goes to the
+        # answer (otherwise long drafts get truncated mid-sentence).
+        if "2.5" in self.model:
+            generation_config["thinkingConfig"] = {"thinkingBudget": 0}
         body = {
             "system_instruction": {"parts": [{"text": system}]},
             "contents": [{"role": "user", "parts": [{"text": user}]}],
-            "generationConfig": {
-                "temperature": self.temperature,
-                "maxOutputTokens": self.max_tokens,
-            },
+            "generationConfig": generation_config,
         }
-        resp = requests.post(url, json=body, timeout=600)
-        if not resp.ok:
-            raise LLMError(f"Gemini {resp.status_code}: {resp.text[:300]}")
+        # Gemini occasionally returns transient 503 (overloaded) / 429 (rate limit);
+        # retry with exponential backoff before giving up.
+        resp = None
+        for attempt in range(4):
+            resp = requests.post(url, json=body, timeout=600)
+            if resp.ok or resp.status_code not in (429, 503):
+                break
+            if attempt < 3:
+                wait = 5 * (2**attempt)
+                print(f"[gemini] {resp.status_code} (transient); {wait}s 後に再試行 ({attempt + 1}/3)")
+                time.sleep(wait)
+        if resp is None or not resp.ok:
+            status = resp.status_code if resp is not None else "no-response"
+            text = resp.text[:300] if resp is not None else ""
+            raise LLMError(f"Gemini {status}: {text}")
         data = resp.json()
         try:
-            text = data["candidates"][0]["content"]["parts"][0]["text"]
+            candidate = data["candidates"][0]
+            text = candidate["content"]["parts"][0]["text"]
         except (KeyError, IndexError) as exc:
             raise LLMError(f"Unexpected Gemini response: {json.dumps(data)[:300]}") from exc
+        # Surface truncation so callers/logs can react instead of silently shipping
+        # a cut-off draft.
+        if candidate.get("finishReason") not in (None, "STOP"):
+            text += f"\n\n<!-- WARNING: Gemini finishReason={candidate.get('finishReason')} (出力途中) -->"
         return LLMResult(text=text, provider=self.provider)
 
 

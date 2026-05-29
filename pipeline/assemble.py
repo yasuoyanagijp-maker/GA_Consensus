@@ -22,6 +22,24 @@ from . import paths
 from .figures import Figure, _FIGURE_RE
 
 
+# ---------------------------------------------------------------- standard footer
+# Heading used as the idempotency marker; appended once before the gate runs.
+AUDIENCE_DISCLAIMER_HEADING = "## 対象読者と免責事項"
+AUDIENCE_DISCLAIMER_FOOTER = (
+    f"\n\n{AUDIENCE_DISCLAIMER_HEADING}\n\n"
+    "**対象読者**: 本稿は医師・医療従事者向けである。\n\n"
+    "**免責事項**: 本稿は情報提供を目的とし、個別の診療を代替するものではない。"
+    "実際の診断・治療にあたっては、最新の添付文書・診療ガイドラインを優先すること。\n"
+)
+
+
+def append_footer(md: str) -> str:
+    """Append the audience/disclaimer footer once (idempotent)."""
+    if AUDIENCE_DISCLAIMER_HEADING in md:
+        return md
+    return md.rstrip() + "\n" + AUDIENCE_DISCLAIMER_FOOTER
+
+
 # ---------------------------------------------------------------- figure embed
 def embed_figures(draft_md: str, figures: list[Figure]) -> str:
     blocks = list(_FIGURE_RE.finditer(draft_md))
@@ -110,7 +128,11 @@ def publication_gate(text: str) -> GateResult:
 
     not_dry = "(dry/手動" not in text and "provider: none" not in text
     checks.append(
-        ("本文が生成済み", "PASS" if not_dry else "FAIL", "dry モードのプレースホルダのまま。LLM 生成が必要")
+        (
+            "本文が生成済み",
+            "PASS" if not_dry else "FAIL",
+            "LLM 生成済みの本文を検出" if not_dry else "dry モードのプレースホルダのまま。LLM 生成が必要",
+        )
     )
 
     passed = all(s != "FAIL" for _, s, _ in checks)
@@ -211,6 +233,9 @@ def assemble(
 ) -> dict:
     draft_md = draft_path.read_text(encoding="utf-8")
     final_md = embed_figures(draft_md, figures)
+    # Append the audience/disclaimer footer before the gate so it lands in the
+    # final markdown AND satisfies the 免責/対象読者 check (idempotent on re-runs).
+    final_md = append_footer(final_md)
 
     final_path = out_dir / (draft_path.stem + "_final.md")
     final_path.write_text(final_md, encoding="utf-8")
