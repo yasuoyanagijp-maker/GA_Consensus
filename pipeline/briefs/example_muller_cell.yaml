@@ -1,0 +1,38 @@
+# 章ブリーフ: Textbook Studio パイプラインの入力
+# 使い方: python -m pipeline.run --brief pipeline/briefs/example_muller_cell.yaml
+
+title: "Muller細胞と網膜疾患"          # 章タイトル（日本語）
+slug: muller_cell_retinal_disease     # 出力ファイル名のスラッグ（省略可: titleから自動生成）
+
+# PubMed / RAG 検索に使うキーワード（英語推奨。複数可）
+keywords:
+  - "Muller cell cone retinal disease"
+  - "Muller glia macular hole"
+  - "Muller cell gliosis diabetic retinopathy"
+
+# 想定する章構成（見出し）。draft段階のスキャフォルドに使う
+outline:
+  - "Muller細胞の発生学的起源と網膜内での役割"
+  - "Muller cell cone の構造と中心窩形成"
+  - "病態: グリオーシスと網膜疾患（黄斑円孔・糖尿病網膜症）"
+  - "画像所見との対応（OCT/OCTA）"
+  - "臨床病態学的視点と今後の展望"
+
+# 文体プロファイル（style_engine のどのモードを使うか）
+style: textbook            # textbook | report
+language: ja               # 出力言語
+
+# 文献収集の上限
+max_results: 25            # PubMed から取得する論文数の上限
+
+# Zotero への自動登録（false なら literature.json のみ生成）
+import_to_zotero: true
+
+# Zotero コレクション（任意。指定すると該当コレクションに追加）
+zotero_collection: ""
+
+# RAG リトリーバの絞り込み（任意。config/backends.json の既定を上書き）
+# rag_year_filter: "2024"            # 指定年の文献チャンクのみ
+# rag_source_filter: "zotero"        # "zotero" | "chunks"（ローカルPDF）
+rag_year_filter: ""
+rag_source_filter: ""

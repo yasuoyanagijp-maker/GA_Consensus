@@ -1,0 +1,33 @@
+{
+  "llm": {
+    "provider": "none",
+    "_providers": ["none", "rag_openai_compat", "rag_custom_rest", "google_pro"],
+    "_comment": "'none' = dry mode: writes assembled prompts to *.prompt.txt for manual paste into NotebookLM/Google Pro. Switch to a rag_* provider once the RAG endpoint spec is known.",
+    "temperature": 0.4,
+    "max_tokens": 4096,
+    "rag_custom_rest": {
+      "_comment": "GENERATOR adapter: expects the endpoint to return a finished answer. This is NOT the retriever. For semantic chunk retrieval use the top-level 'retriever' section + rag_client.py.",
+      "method": "POST",
+      "query_field": "query",
+      "context_field": "context",
+      "response_path": "answer"
+    }
+  },
+  "retriever": {
+    "provider": "rag_query",
+    "_providers": ["rag_query", "none"],
+    "_comment": "RETRIEVER (not a generator): rag_client.py queries POST /query and returns ranked chunks of Zotero papers + local PDFs, which are prepended as CONTEXT in synthesize.py. Generation still happens on the 'llm' backend above. If the endpoint is unreachable the pipeline warns and continues with PubMed abstracts only. Set provider='none' to disable. URL/limits come from RAG_QUERY_* in .env.local.",
+    "limit": 5,
+    "min_similarity": 0.0,
+    "year_filter": null,
+    "source_filter": null,
+    "_filters_comment": "Global retrieval scope (optional). year_filter e.g. '2024'; source_filter 'zotero' | 'chunks'. null = no filter. A chapter brief's rag_year_filter / rag_source_filter overrides these per-run."
+  },
+  "image": {
+    "provider": "pptx_placeholder",
+    "_providers": ["prompt_only", "pptx_placeholder", "gemini_imagen"],
+    "_comment": "'pptx_placeholder' (free) builds a 2x2 empty-panel deck + captions to drop figures into. 'prompt_only' (free) emits English prompts + JP captions. 'gemini_imagen' (paid, Google Pro) renders 4-panel PNGs.",
+    "panels_per_figure": 4
+  },
+  "cost_note": "Default = PubMed + RAG(none/local) + pptx_placeholder, all free. Enable gemini_imagen / google_pro only when needed; run.py --estimate prints a per-chapter image-count estimate."
+}
