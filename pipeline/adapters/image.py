@@ -5,7 +5,9 @@ Providers (config/backends.json -> image.provider):
 - prompt_only      : free. Never renders; figures.py just writes English prompts + JP captions.
 - pptx_placeholder : free. No raster output here; assemble.py builds a 2x2 empty-panel .pptx
                      with captions so figures can be dropped in (replaces the slide+Codia step).
-- gemini_imagen    : paid (Google AI Pro). Renders a 4-panel PNG via Imagen.
+- gemini_imagen    : paid. Renders a PNG via the Imagen :predict API (IMAGEN_MODEL override).
+- gemini_image     : renders a PNG via a gemini-*-image :generateContent model
+                     (IMAGE_MODEL override; "Nano Banana"-style). Subject to the key's quota.
 """
 from __future__ import annotations
 
@@ -62,7 +64,7 @@ class GeminiImagenAdapter(ImageAdapter):
 
     def __init__(self):
         self.api_key = paths.env("GEMINI_API_KEY")
-        self.model = paths.env("IMAGEN_MODEL") or "imagen-3.0-generate-002"
+        self.model = paths.env("IMAGEN_MODEL") or "imagen-4.0-generate-001"
         if not self.api_key:
             raise ImageError("GEMINI_API_KEY is not set in pipeline/.env.local")
 
@@ -90,10 +92,44 @@ class GeminiImagenAdapter(ImageAdapter):
         return ImageResult(rendered=True, path=out_path, provider=self.provider)
 
 
+class GeminiImageAdapter(ImageAdapter):
+    """Image generation via a gemini-*-image :generateContent model (returns inline PNG)."""
+
+    provider = "gemini_image"
+    renders = True
+
+    def __init__(self):
+        self.api_key = paths.env("GEMINI_API_KEY")
+        self.model = paths.env("IMAGE_MODEL") or "gemini-2.5-flash-image"
+        if not self.api_key:
+            raise ImageError("GEMINI_API_KEY is not set in pipeline/.env.local")
+
+    def render(self, prompt, out_path):
+        url = (
+            f"https://generativelanguage.googleapis.com/v1beta/models/"
+            f"{self.model}:generateContent?key={self.api_key}"
+        )
+        body = {"contents": [{"parts": [{"text": prompt}]}]}
+        resp = requests.post(url, json=body, timeout=300)
+        if not resp.ok:
+            raise ImageError(f"gemini_image {resp.status_code}: {resp.text[:300]}")
+        parts = (
+            resp.json().get("candidates", [{}])[0].get("content", {}).get("parts", [])
+        )
+        for p in parts:
+            inline = p.get("inlineData") or p.get("inline_data")
+            if inline and inline.get("data"):
+                out_path.parent.mkdir(parents=True, exist_ok=True)
+                out_path.write_bytes(base64.b64decode(inline["data"]))
+                return ImageResult(rendered=True, path=out_path, provider=self.provider)
+        raise ImageError("gemini_image returned no inline image data")
+
+
 _REGISTRY = {
     "prompt_only": PromptOnlyAdapter,
     "pptx_placeholder": PptxPlaceholderAdapter,
     "gemini_imagen": GeminiImagenAdapter,
+    "gemini_image": GeminiImageAdapter,
 }
 
 
