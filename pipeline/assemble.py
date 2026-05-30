@@ -145,8 +145,20 @@ def export_docx(md_path: Path, out_dir: Path) -> Path | None:
         print("[assemble] pandoc not found; skipping .docx export")
         return None
     docx = out_dir / (md_path.stem + ".docx")
+    # Disable yaml_metadata_block: our front matter is HTML comments, and Medical Tribune
+    # articles use '---' thematic breaks (before the credit line) that pandoc would
+    # otherwise try to parse as a YAML metadata block and fail on.
     subprocess.run(
-        ["pandoc", str(md_path), "-o", str(docx), "--resource-path", str(paths.ROOT)],
+        [
+            "pandoc",
+            "-f",
+            "markdown-yaml_metadata_block",
+            str(md_path),
+            "-o",
+            str(docx),
+            "--resource-path",
+            str(paths.ROOT),
+        ],
         check=True,
     )
     print(f"[assemble] docx -> {docx} (Pages で直接開けます)")

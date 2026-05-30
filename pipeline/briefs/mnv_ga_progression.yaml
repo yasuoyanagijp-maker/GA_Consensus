@@ -1,0 +1,27 @@
+# Medical Tribune / ドクターズアイ — MNV発生とGA進行（柳 靖雄 my-tone）
+# 出典: Graefes Arch Clin Exp Ophthalmol, 2025
+# 生成: ./venv/bin/python -m pipeline.run --brief pipeline/briefs/mnv_ga_progression.yaml \
+#          --llm-provider google_pro --no-zotero
+
+style: medical_tribune
+title: "MNVの発生はGA進行の「ブレーキ」となるのか"
+slug: "mnv_ga_progression"
+
+source_doi: "10.1007/s00417-025-07053-8"
+source_url: "https://link.springer.com/article/10.1007/s00417-025-07053-8"
+source_title: "The impact of macular neovascularization development on geographic atrophy progression"
+
+angle: >
+  MNV（黄斑新生血管, macular neovascularization）の発生が、GA（地図状萎縮, geographic
+  atrophy）の進行に対して「保護的」に働くという逆説的な所見を面白さの中心に据える。
+  読者は眼科医（Doctor's Eye / Medical Tribune 掲載想定）。なぜ滲出性病変の出現が萎縮の
+  進行を抑制しうるのか、その病態メカニズムと臨床的含意（抗VEGF療法との関係を含む）を考察する。
+
+keywords:
+  - "geographic atrophy progression macular neovascularization"
+  - "geographic atrophy growth rate anti-VEGF"
+  - "macular neovascularization geographic atrophy protective"
+max_results: 8
+
+import_to_zotero: false
+language: ja
