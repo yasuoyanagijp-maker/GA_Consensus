@@ -58,18 +58,27 @@ def build_brief_from_args(args: argparse.Namespace) -> Brief:
     if args.keywords:
         keywords.extend(p for p in args.keywords.split(";"))
     keywords = [k.strip() for k in keywords if k.strip()]
-    if not keywords:
+    style = (args.style or "textbook").strip()
+    is_article = style == "medical_tribune"
+    if not keywords and not is_article:
         sys.exit("[run] --keyword/--keywords が必要です (--brief 未指定時)")
-    title = (args.title or keywords[0]).strip()
+    title = (args.title or args.source_title or (keywords[0] if keywords else "")).strip()
+    if not title:
+        sys.exit("[run] --title が必要です")
     outline = [h.strip() for h in (args.outline or "").split(";") if h.strip()]
     return Brief(
         title=title,
         keywords=keywords,
         outline=outline,
+        style=style,
         max_results=args.max_results,
         import_to_zotero=args.zotero,
         rag_year_filter=args.rag_year or "",
         rag_source_filter=args.rag_source or "",
+        source_doi=args.source_doi or "",
+        source_url=args.source_url or "",
+        source_title=args.source_title or "",
+        angle=args.angle or "",
         source_path="(in-memory: GUI/CLI)",
     )
 
@@ -130,9 +139,135 @@ def check_rag() -> bool:
     return True
 
 
+def run_article(args: argparse.Namespace, brief: Brief) -> None:
+    """Streamlined commentary flow for style=medical_tribune.
+
+    fetch source (Europe PMC/PubMed) + optional supporting harvest/RAG
+      -> article draft via the LLM adapter (柳 my-tone)
+      -> assemble (footer + publication gate + .docx). Figures OFF.
+    Reuses harvest, article, synthesize._rag_context, assemble — no logic duplicated.
+    """
+    from . import article as article_mod
+    from . import assemble as asm
+    from .references import Reference
+
+    out_dir = paths.topic_out_dir(brief.slug)
+    state = _load_state(out_dir)
+    state["brief"] = dataclasses.asdict(brief)
+    print(f"[run] style=medical_tribune topic={brief.slug} out={out_dir}")
+    emit({"event": "run", "status": "start", "slug": brief.slug, "title": brief.title,
+          "stages": ["source", "harvest", "article", "assemble"]})
+
+    llm = get_llm(args.llm_provider) if args.llm_provider else get_llm()
+
+    # 1. Source paper metadata + full text (Zotero PDF preferred over abstract).
+    _stage_start("source")
+    source_ref, abstract_found = article_mod.fetch_source_reference(
+        brief.source_doi, brief.source_title or brief.title, brief.source_url
+    )
+    source_fulltext = ""
+    ft = article_mod.fetch_zotero_fulltext(brief.source_doi, brief.source_title or brief.title)
+    if ft:
+        source_fulltext, ft_info = ft
+        (out_dir / "source_fulltext.txt").write_text(source_fulltext, encoding="utf-8")
+        print(f"[article] full text: {len(source_fulltext)} chars via {ft_info.get('method')} "
+              f"-> {out_dir / 'source_fulltext.txt'}")
+        grounding = "zotero_fulltext"
+    else:
+        ft_info = {}
+        grounding = "abstract" if abstract_found else "title_only"
+    state["source"] = {"doi": source_ref.doi, "pmid": source_ref.pmid,
+                       "abstract_found": abstract_found, "title": source_ref.title,
+                       "grounding": grounding, "fulltext_chars": len(source_fulltext),
+                       "fulltext_source": ft_info}
+    _stage_done("source", f"grounding={grounding} ({len(source_fulltext)} chars)" if source_fulltext
+                else ("abstract取得" if abstract_found else "抄録なし"))
+
+    # 2. Optional supporting references (PubMed) — only if keywords were given.
+    supporting: list[Reference] = []
+    if brief.keywords:
+        _stage_start("harvest")
+        supporting = harvest_supporting(brief, out_dir)
+        _stage_done("harvest", f"{len(supporting)} supporting refs")
+    refs = article_mod._dedupe([source_ref] + supporting)
+
+    # 3. Optional RAG grounding (graceful if endpoint down / --no-rag).
+    rag_context: list[str] = []
+    if args.rag:
+        from .synthesize import _rag_context
+        rag_context = _rag_context(brief)
+
+    # 3b. Concept-figure backend. medical_tribune renders ONE concept figure by default;
+    # uses a per-run provider (repo default backends.json stays pptx_placeholder). Falls
+    # back to prompt-only inside build_article if the backend can't render (quota/paid).
+    image_backend = None
+    if args.figures:
+        from .adapters.image import get_image_backend
+        provider = args.image_provider or "gemini_image"
+        try:
+            image_backend = get_image_backend(provider)
+            print(f"[article] concept-figure backend: {provider}")
+        except Exception as exc:  # noqa: BLE001
+            print(f"[article] image backend '{provider}' unavailable ({exc}); prompt-only figure")
+
+    # 4. Article draft (real LLM), grounded in the source full text when available.
+    _stage_start("article")
+    article_path = article_mod.build_article(
+        brief, source_ref, refs, abstract_found, out_dir, llm,
+        rag_context=rag_context, source_fulltext=source_fulltext,
+        image_backend=image_backend,
+    )
+    state["draft"] = str(article_path)
+    _stage_done("article", Path(article_path).name)
+
+    # 5. Assemble: footer + publication gate + .docx (no figures/pptx for articles).
+    _stage_start("assemble")
+    result = asm.assemble(
+        article_path, [], out_dir, brief.title, make_pptx=False, open_pages=args.open_pages
+    )
+    state["assemble"] = result
+    _stage_done("assemble", "gate PASS" if result["gate_passed"] else "gate FAIL")
+
+    _save_state(out_dir, state)
+    print(f"[run] done. 成果物: {out_dir}")
+    print(f"      article  : {article_path}")
+    print(f"      final md : {result['final_md']}")
+    print(f"      docx     : {result['docx']}")
+    print(f"      gate     : {'PASS' if result['gate_passed'] else 'FAIL'} ({result['gate_report']})")
+    emit({
+        "event": "done", "slug": brief.slug, "title": brief.title,
+        "artifacts": {
+            "outDir": str(out_dir), "draft": str(article_path),
+            "finalMd": result.get("final_md"), "docx": result.get("docx"),
+            "gateReport": result.get("gate_report"),
+        },
+        "gate_passed": bool(result.get("gate_passed", False)),
+    })
+
+
+def harvest_supporting(brief: Brief, out_dir: Path):
+    """Harvest PubMed refs for supporting citations (never blocks the article)."""
+    from . import harvest as harvest_mod
+    try:
+        return harvest_mod.harvest(brief, out_dir)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[article] supporting harvest skipped (失敗): {exc}")
+        return []
+
+
 def run(args: argparse.Namespace) -> None:
     brief = load_brief(args.brief) if args.brief else build_brief_from_args(args)
-    # CLI RAG filters override the brief (works for both YAML and in-memory briefs).
+    # CLI overrides (work for both YAML and in-memory briefs).
+    if args.style:
+        brief.style = args.style
+    if args.source_doi:
+        brief.source_doi = args.source_doi
+    if args.source_url:
+        brief.source_url = args.source_url
+    if args.source_title:
+        brief.source_title = args.source_title
+    if args.angle:
+        brief.angle = args.angle
     if args.rag_year:
         brief.rag_year_filter = args.rag_year
     if args.rag_source:
@@ -140,6 +275,11 @@ def run(args: argparse.Namespace) -> None:
     # --no-rag disables retrieval for this process (rag_client.get_retriever honors it).
     if not args.rag:
         os.environ["PIPELINE_DISABLE_RAG"] = "1"
+
+    # Media-article mode: dedicated streamlined flow.
+    if brief.style == "medical_tribune":
+        run_article(args, brief)
+        return
 
     out_dir = paths.topic_out_dir(brief.slug)
     state = _load_state(out_dir)
@@ -293,9 +433,15 @@ def main(argv: list[str] | None = None) -> None:
     # Brief-less (GUI/CLI) inputs:
     parser.add_argument("--keyword", action="append", help="検索キーワード (繰り返し可)")
     parser.add_argument("--keywords", default="", help="検索キーワードを ';' 区切りで指定")
-    parser.add_argument("--title", default="", help="章タイトル")
+    parser.add_argument("--title", default="", help="章/記事タイトル")
     parser.add_argument("--outline", default="", help="想定見出しを ';' 区切りで指定")
     parser.add_argument("--max-results", dest="max_results", type=int, default=25)
+    # Style + source paper (style=medical_tribune の論文解説コラム):
+    parser.add_argument("--style", default="", help="textbook | report | medical_tribune")
+    parser.add_argument("--source-doi", dest="source_doi", default="", help="出典論文 DOI")
+    parser.add_argument("--source-url", dest="source_url", default="", help="出典論文 URL")
+    parser.add_argument("--source-title", dest="source_title", default="", help="出典論文タイトル")
+    parser.add_argument("--angle", default="", help="編集の angle (面白さの中心)")
     # Stage range:
     parser.add_argument("--from", dest="from_stage", default="harvest", choices=STAGES)
     parser.add_argument("--to", dest="to_stage", default="assemble", choices=STAGES)

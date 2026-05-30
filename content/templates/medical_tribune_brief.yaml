@@ -1,0 +1,34 @@
+# Medical Tribune 記事ブリーフ テンプレート（柳 靖雄 my-tone / ドクターズアイ形式）
+#
+# 使い方:
+#   1. このファイルをコピーして編集（例: pipeline/briefs/<topic>.yaml）
+#   2. source_doi（または source_title）と angle を埋める
+#   3. 実行:
+#        ./venv/bin/python -m pipeline.run --brief pipeline/briefs/<topic>.yaml \
+#            --llm-provider google_pro --no-zotero
+#   4. 成果物: content/drafts/<日付>_<slug>_medical_tribune.md と pipeline/out/<slug>/
+#
+# 出典は Europe PMC / PubMed から自動取得する（Springer 等の本文はスクレイプしない）。
+# 抄録が取得できない場合は title + angle から慎重に生成し、図表・数値は要全文確認の注記を付す。
+
+style: medical_tribune          # このモードを有効化（textbook / report 以外）
+title: "（記事タイトル：問いかけ/フック型。未確定なら仮で可）"
+slug: "topic_slug"              # 出力ファイル名に使う英数スラッグ
+
+# --- 出典論文（DOI があれば DOI だけでよい） ---
+source_doi: "10.xxxx/xxxxx"
+source_url: "https://doi.org/10.xxxx/xxxxx"
+source_title: "（出典論文の英語タイトル。DOIが無い/未索引のときのフォールバック検索に使う）"
+
+# --- 編集の angle（記事の「面白さの中心」） ---
+angle: >
+  （編集者の狙い・面白さの中心をここに。例: 「○○が△△に保護的に働く」点を中心に据える。）
+
+# --- 関連文献（任意）。裏付け引用 [2] 以降に使う PubMed 検索語 ---
+keywords:
+  - "geographic atrophy progression"
+  - "macular neovascularization"
+max_results: 8                  # 関連文献の取得上限（少なめ推奨）
+
+import_to_zotero: false         # 記事モードでは通常 Zotero 登録しない
+language: ja
