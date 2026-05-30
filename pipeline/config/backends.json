@@ -25,8 +25,8 @@
   },
   "image": {
     "provider": "pptx_placeholder",
-    "_providers": ["prompt_only", "pptx_placeholder", "gemini_imagen"],
-    "_comment": "'pptx_placeholder' (free) builds a 2x2 empty-panel deck + captions to drop figures into. 'prompt_only' (free) emits English prompts + JP captions. 'gemini_imagen' (paid, Google Pro) renders 4-panel PNGs.",
+    "_providers": ["prompt_only", "pptx_placeholder", "gemini_imagen", "gemini_image"],
+    "_comment": "'pptx_placeholder' (free) builds a 2x2 empty-panel deck + captions to drop figures into. 'prompt_only' (free) emits English prompts + JP captions. 'gemini_imagen' (paid) renders via Imagen :predict (IMAGEN_MODEL). 'gemini_image' renders via a gemini-*-image :generateContent model (IMAGE_MODEL, subject to key quota). medical_tribune mode defaults to a per-run image backend (repo default stays pptx_placeholder).",
     "panels_per_figure": 4
   },
   "cost_note": "Default = PubMed + RAG(none/local) + pptx_placeholder, all free. Enable gemini_imagen / google_pro only when needed; run.py --estimate prints a per-chapter image-count estimate."
