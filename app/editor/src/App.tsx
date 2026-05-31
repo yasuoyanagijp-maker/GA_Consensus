@@ -27,6 +27,7 @@ export default function App() {
   const [view, setView] = useState<"editor" | "studio">("editor");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
+  const [publishing, setPublishing] = useState(false);
   const [editorSplitPercent, setEditorSplitPercent] = useState<number>(() => {
     const n = Number(window.localStorage.getItem(layoutKeyEditor));
     return Number.isFinite(n) && n >= 20 && n <= 80 ? n : 50;
@@ -206,6 +207,31 @@ export default function App() {
     }
   };
 
+  const publish = async () => {
+    if (READ_ONLY || publishing) return;
+    setPublishing(true);
+    try {
+      // Persist the in-editor changes first so they are part of what gets published.
+      if (currentFile && dirty) {
+        setStatus("保存中…");
+        await api.saveFile(currentFile, content);
+        setSavedContent(content);
+      }
+      setStatus("リモートへ公開中…（バンドル再生成 → commit → push）");
+      const r = await api.publish();
+      if (r.pushed) {
+        setStatus(`公開しました（${r.branch} に push）。数分でサイトに反映されます`);
+      } else {
+        setStatus(r.message || "変更はありません（公開済み）");
+      }
+      setTimeout(() => setStatus(""), 6000);
+    } catch (e) {
+      setStatus(`公開エラー: ${e}`);
+    } finally {
+      setPublishing(false);
+    }
+  };
+
   const openStudioDraft = useCallback(async (runId: string, absPath: string) => {
     try {
       setStatus("ドラフトを読み込み中…");
@@ -333,6 +359,17 @@ export default function App() {
             {!READ_ONLY && (
               <button type="button" className="btn primary" onClick={save} disabled={!dirty || !currentFile}>
                 保存 {dirty ? "*" : ""}
+              </button>
+            )}
+            {!READ_ONLY && (
+              <button
+                type="button"
+                className="btn"
+                onClick={publish}
+                disabled={publishing}
+                title="保存中の変更を含め、公開サイト（GitHub Pages）へ反映します"
+              >
+                {publishing ? "公開中…" : "リモートへ公開"}
               </button>
             )}
             {READ_ONLY && <span className="muted small">公開版: 閲覧専用（編集不可）</span>}

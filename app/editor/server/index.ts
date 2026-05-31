@@ -605,6 +605,75 @@ app.get("/api/pipeline/runs/:runId/artifact", async (req, res) => {
   }
 });
 
+// ---------------------------------------------------------------- Publish to remote (GitHub Pages)
+// The published site is a read-only GitHub Pages frontend that serves the bundled
+// `public/static-data/ga-consensus-files.json`. To reflect local edits we must:
+//   1) regenerate that bundle, 2) commit the manuscripts + bundle, 3) push to the
+//   tracking branch (which triggers the Pages deploy workflow on `app/editor/**`).
+function runCommand(
+  cmd: string,
+  args: string[],
+  cwd: string,
+  allowNonZero = false,
+): Promise<{ code: number | null; stdout: string; stderr: string }> {
+  return new Promise((resolve, reject) => {
+    const child = spawn(cmd, args, { cwd });
+    let stdout = "";
+    let stderr = "";
+    child.stdout.on("data", (d) => (stdout += d.toString()));
+    child.stderr.on("data", (d) => (stderr += d.toString()));
+    child.on("error", reject);
+    child.on("close", (code) => {
+      if (code !== 0 && !allowNonZero) {
+        reject(new Error(`${cmd} ${args.join(" ")} failed (${code}): ${(stderr || stdout).slice(0, 500)}`));
+      } else {
+        resolve({ code, stdout, stderr });
+      }
+    });
+  });
+}
+
+const STATIC_BUNDLE_REL = "app/editor/public/static-data/ga-consensus-files.json";
+const GA_DIR_REL = path.relative(REPO_ROOT, GA_DIR);
+// Publish only what the site/manuscript needs: chapter markdown, the citation-link
+// map, and the regenerated bundle. The unresolved-candidates cache is local churn.
+const PUBLISH_PATHSPECS = [
+  `${GA_DIR_REL}/*.md`,
+  `${GA_DIR_REL}/.zotero-citation-map.json`,
+  STATIC_BUNDLE_REL,
+];
+
+app.post("/api/publish", async (req, res) => {
+  try {
+    const { message } = req.body as { message?: string };
+
+    // 1) Rebuild the static bundle the published frontend reads from.
+    await runCommand("node", ["scripts/sync-static-content.mjs"], ROOT);
+
+    // 2) Stage manuscripts + citation map + regenerated bundle.
+    await runCommand("git", ["add", "--", ...PUBLISH_PATHSPECS], REPO_ROOT);
+
+    // 3) Nothing staged => already published, bail early.
+    const diff = await runCommand("git", ["diff", "--cached", "--quiet"], REPO_ROOT, true);
+    if (diff.code === 0) {
+      res.json({ ok: true, pushed: false, message: "変更はありません（公開済み）" });
+      return;
+    }
+
+    // 4) Commit.
+    const commitMsg = message?.trim() || `Publish GA consensus edits (${new Date().toISOString()})`;
+    await runCommand("git", ["commit", "-m", commitMsg], REPO_ROOT);
+
+    // 5) Push to the current branch's remote (triggers the Pages deploy workflow).
+    const branch = (await runCommand("git", ["rev-parse", "--abbrev-ref", "HEAD"], REPO_ROOT)).stdout.trim();
+    await runCommand("git", ["push", "origin", branch], REPO_ROOT);
+
+    res.json({ ok: true, pushed: true, branch, message: commitMsg });
+  } catch (e) {
+    res.status(500).json({ error: String(e) });
+  }
+});
+
 if (process.env.NODE_ENV === "production") {
   const distPath = path.join(__dirname, "../dist");
   app.use(express.static(distPath));

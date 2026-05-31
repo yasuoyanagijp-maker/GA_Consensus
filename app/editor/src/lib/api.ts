@@ -88,6 +88,14 @@ export const api = {
         body: JSON.stringify({ content }),
       }),
     ),
+  publish: (message?: string) =>
+    json<{ ok: boolean; pushed: boolean; branch?: string; message: string }>(
+      fetch(apiUrl("/api/publish"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+      }),
+    ),
   syncReferenceWithZotero: (name: string, refNum: number, key: string) =>
     json<{ ok: boolean; citation: string }>(
       fetch(apiUrl(`/api/files/${encodeURIComponent(name)}/references/${refNum}/sync-from-zotero`), {
