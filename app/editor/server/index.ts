@@ -26,6 +26,11 @@ const PIPELINE_OUT_DIR = path.join(REPO_ROOT, "pipeline", "out");
 const DRAFTS_DIR = path.join(REPO_ROOT, "content", "drafts");
 const LINKS_FILE = path.join(GA_DIR, ".zotero-citation-map.json");
 const CANDIDATES_FILE = path.join(GA_DIR, ".zotero-unresolved-candidates.json");
+// Offline Zotero cache lives under the editor's static-data dir so it is served
+// by Vite locally AND bundled into the GitHub Pages build for remote viewing.
+const ZOTERO_CACHE_DIR = path.join(ROOT, "public", "static-data", "zotero");
+const ZOTERO_ITEMS_FILE = path.join(ZOTERO_CACHE_DIR, "items.json");
+const ZOTERO_PDF_DIR = path.join(ZOTERO_CACHE_DIR, "pdfs");
 
 const app = express();
 app.use(cors());
@@ -365,36 +370,35 @@ app.get("/api/zotero/search", async (req, res) => {
 
 app.get("/api/zotero/item/:key", async (req, res) => {
   try {
-    const url = `https://api.zotero.org/users/${ZOTERO_USER_ID}/items/${req.params.key}?format=json`;
-    const item = (await (await zoteroFetch(url)).json()) as ZoteroItem;
-    const childrenUrl = `https://api.zotero.org/users/${ZOTERO_USER_ID}/items/${req.params.key}/children?format=json`;
-    const children = (await (await zoteroFetch(childrenUrl)).json()) as ZoteroItem[];
-    const pdf = findPdfAttachment(children);
-    let pdfUrl: string | null = null;
-    let pdfSource: "zotero_file" | "external_url" | null = null;
-    if (pdf) {
-      if (pdf.data.linkMode === "imported_url" && pdf.data.url) {
-        pdfUrl = pdf.data.url;
-        pdfSource = "external_url";
-      } else {
-        pdfUrl = `/api/zotero/item/${req.params.key}/pdf`;
-        pdfSource = "zotero_file";
+    const key = req.params.key;
+    const fresh = String(req.query.fresh ?? "") === "1";
+
+    if (!fresh) {
+      const cache = await readZoteroCache();
+      const cached = cache[key];
+      if (cached) {
+        // Serve instantly from the offline cache (works without network).
+        res.json({
+          key: cached.key,
+          title: cached.title,
+          creators: cached.creators,
+          date: cached.date,
+          publicationTitle: cached.publicationTitle,
+          DOI: cached.DOI,
+          url: cached.url,
+          abstractNote: cached.abstractNote ?? "",
+          hasPdf: Boolean(cached.hasPdf),
+          pdfAttachmentKey: null,
+          pdfUrl: cached.hasPdf ? `/api/zotero/item/${key}/pdf` : null,
+          pdfSource: cached.hasPdf ? "zotero_file" : null,
+          cached: true,
+        });
+        return;
       }
     }
-    res.json({
-      key: item.key,
-      title: item.data.title,
-      creators: formatCreators(item.data.creators),
-      date: item.data.date,
-      publicationTitle: item.data.publicationTitle,
-      DOI: item.data.DOI,
-      url: item.data.url,
-      abstractNote: item.data.abstractNote ?? "",
-      hasPdf: Boolean(pdfUrl),
-      pdfAttachmentKey: pdf?.key ?? null,
-      pdfUrl,
-      pdfSource,
-    });
+
+    const { detail } = await fetchZoteroItemLive(key);
+    res.json(detail);
   } catch (e) {
     res.status(500).json({ error: String(e) });
   }
@@ -402,7 +406,18 @@ app.get("/api/zotero/item/:key", async (req, res) => {
 
 app.get("/api/zotero/item/:key/pdf", async (req, res) => {
   try {
-    const childrenUrl = `https://api.zotero.org/users/${ZOTERO_USER_ID}/items/${req.params.key}/children?format=json`;
+    const key = req.params.key;
+
+    // Cache-first: stream the locally stored PDF when available.
+    const cachedPath = path.join(ZOTERO_PDF_DIR, `${key}.pdf`);
+    if (await fileExists(cachedPath)) {
+      res.setHeader("Content-Type", "application/pdf");
+      res.setHeader("Content-Disposition", `inline; filename="${key}.pdf"`);
+      createReadStream(cachedPath).pipe(res);
+      return;
+    }
+
+    const childrenUrl = `https://api.zotero.org/users/${ZOTERO_USER_ID}/items/${key}/children?format=json`;
     const children = (await (await zoteroFetch(childrenUrl)).json()) as ZoteroItem[];
     const pdf = findPdfAttachment(children);
     if (!pdf) {
@@ -430,6 +445,65 @@ app.get("/api/zotero/item/:key/pdf", async (req, res) => {
       `inline; filename="${encodeURIComponent(pdf.data.filename ?? "document.pdf")}"`,
     );
     res.send(buffer);
+  } catch (e) {
+    res.status(500).json({ error: String(e) });
+  }
+});
+
+// Download metadata + PDFs for every Zotero key referenced by the citation map,
+// so linked papers open instantly offline (and can be published to the remote site).
+app.post("/api/zotero/cache-linked", async (_req, res) => {
+  try {
+    const raw = await fs.readFile(LINKS_FILE, "utf-8").catch(() => "{}");
+    const linkMap = JSON.parse(raw) as Record<string, Record<string, string>>;
+    const keys = new Set<string>();
+    for (const fileLinks of Object.values(linkMap)) {
+      for (const k of Object.values(fileLinks)) {
+        if (k) keys.add(k);
+      }
+    }
+
+    await fs.mkdir(ZOTERO_PDF_DIR, { recursive: true });
+    const cache = await readZoteroCache();
+    let cachedMeta = 0;
+    let cachedPdf = 0;
+    const failed: string[] = [];
+
+    for (const key of keys) {
+      try {
+        const { detail, pdfAttachment } = await fetchZoteroItemLive(key);
+        let hasPdf = false;
+        let pdfFile: string | null = null;
+        if (detail.hasPdf && pdfAttachment) {
+          const ok = await downloadZoteroPdf(key, pdfAttachment);
+          if (ok) {
+            hasPdf = true;
+            pdfFile = `${key}.pdf`;
+            cachedPdf += 1;
+          }
+        }
+        cache[key] = {
+          key,
+          title: detail.title,
+          creators: detail.creators,
+          date: detail.date,
+          publicationTitle: detail.publicationTitle,
+          DOI: detail.DOI,
+          url: detail.url,
+          abstractNote: detail.abstractNote ?? "",
+          hasPdf,
+          pdfFile,
+          cachedAt: new Date().toISOString(),
+        };
+        cachedMeta += 1;
+      } catch {
+        failed.push(key);
+      }
+    }
+
+    await fs.mkdir(ZOTERO_CACHE_DIR, { recursive: true });
+    await fs.writeFile(ZOTERO_ITEMS_FILE, JSON.stringify(cache, null, 2), "utf-8");
+    res.json({ ok: true, totalKeys: keys.size, cachedMeta, cachedPdf, failed });
   } catch (e) {
     res.status(500).json({ error: String(e) });
   }
@@ -633,14 +707,15 @@ function runCommand(
   });
 }
 
-const STATIC_BUNDLE_REL = "app/editor/public/static-data/ga-consensus-files.json";
+const STATIC_DATA_REL = "app/editor/public/static-data";
 const GA_DIR_REL = path.relative(REPO_ROOT, GA_DIR);
-// Publish only what the site/manuscript needs: chapter markdown, the citation-link
-// map, and the regenerated bundle. The unresolved-candidates cache is local churn.
+// Publish what the site/manuscript needs: chapter markdown, the citation-link map,
+// and the whole static-data bundle (chapter bundle + citation links + offline Zotero
+// metadata/PDFs). The unresolved-candidates cache is local churn and stays out.
 const PUBLISH_PATHSPECS = [
   `${GA_DIR_REL}/*.md`,
   `${GA_DIR_REL}/.zotero-citation-map.json`,
-  STATIC_BUNDLE_REL,
+  STATIC_DATA_REL,
 ];
 
 app.post("/api/publish", async (req, res) => {
@@ -726,6 +801,119 @@ type UnresolvedCandidateEntry = {
   candidates: CandidateHit[];
 };
 type UnresolvedCandidateMap = Record<string, Record<string, UnresolvedCandidateEntry>>;
+
+type ZoteroItemDetailServer = {
+  key: string;
+  title?: string;
+  creators?: string;
+  date?: string;
+  publicationTitle?: string;
+  DOI?: string;
+  url?: string;
+  abstractNote: string;
+  hasPdf: boolean;
+  pdfAttachmentKey: string | null;
+  pdfUrl: string | null;
+  pdfSource: "zotero_file" | "external_url" | null;
+};
+
+type ZoteroCacheEntry = {
+  key: string;
+  title?: string;
+  creators?: string;
+  date?: string;
+  publicationTitle?: string;
+  DOI?: string;
+  url?: string;
+  abstractNote: string;
+  hasPdf: boolean;
+  pdfFile: string | null;
+  cachedAt: string;
+};
+type ZoteroCacheMap = Record<string, ZoteroCacheEntry>;
+
+async function readZoteroCache(): Promise<ZoteroCacheMap> {
+  const raw = await fs.readFile(ZOTERO_ITEMS_FILE, "utf-8").catch(() => "{}");
+  try {
+    return JSON.parse(raw) as ZoteroCacheMap;
+  } catch {
+    return {};
+  }
+}
+
+async function fileExists(p: string): Promise<boolean> {
+  return fs.access(p).then(() => true).catch(() => false);
+}
+
+async function fetchZoteroItemLive(
+  key: string,
+): Promise<{ detail: ZoteroItemDetailServer; pdfAttachment: ZoteroItem | undefined }> {
+  const url = `https://api.zotero.org/users/${ZOTERO_USER_ID}/items/${key}?format=json`;
+  const item = (await (await zoteroFetch(url)).json()) as ZoteroItem;
+  const childrenUrl = `https://api.zotero.org/users/${ZOTERO_USER_ID}/items/${key}/children?format=json`;
+  const children = (await (await zoteroFetch(childrenUrl)).json()) as ZoteroItem[];
+  const pdf = findPdfAttachment(children);
+  let pdfUrl: string | null = null;
+  let pdfSource: "zotero_file" | "external_url" | null = null;
+  if (pdf) {
+    if (pdf.data.linkMode === "imported_url" && pdf.data.url) {
+      pdfUrl = pdf.data.url;
+      pdfSource = "external_url";
+    } else {
+      pdfUrl = `/api/zotero/item/${key}/pdf`;
+      pdfSource = "zotero_file";
+    }
+  }
+  return {
+    detail: {
+      key: item.key,
+      title: item.data.title,
+      creators: formatCreators(item.data.creators),
+      date: item.data.date,
+      publicationTitle: item.data.publicationTitle,
+      DOI: item.data.DOI,
+      url: item.data.url,
+      abstractNote: item.data.abstractNote ?? "",
+      hasPdf: Boolean(pdfUrl),
+      pdfAttachmentKey: pdf?.key ?? null,
+      pdfUrl,
+      pdfSource,
+    },
+    pdfAttachment: pdf,
+  };
+}
+
+async function downloadZoteroPdf(key: string, pdf: ZoteroItem): Promise<boolean> {
+  try {
+    let buffer: Buffer | null = null;
+
+    const tryUrl = async (u: string, withKey: boolean) => {
+      const r = await fetch(u, withKey ? { headers: zoteroHeaders() } : undefined);
+      if (r.ok) return Buffer.from(await r.arrayBuffer());
+      return null;
+    };
+
+    if (pdf.data.linkMode === "imported_url" && pdf.data.url) {
+      buffer = await tryUrl(pdf.data.url, false);
+    }
+    if (!buffer) {
+      const fileUrl = `https://api.zotero.org/users/${ZOTERO_USER_ID}/items/${pdf.key}/file`;
+      buffer = await tryUrl(fileUrl, true);
+      if (!buffer && pdf.data.url) buffer = await tryUrl(pdf.data.url, false);
+    }
+    if (!buffer) return false;
+
+    // Reject HTML/paywall pages: a real PDF starts with "%PDF-".
+    const head = buffer.subarray(0, 1024).toString("latin1");
+    if (!head.includes("%PDF-")) return false;
+
+    await fs.mkdir(ZOTERO_PDF_DIR, { recursive: true });
+    await fs.writeFile(path.join(ZOTERO_PDF_DIR, `${key}.pdf`), buffer);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 function formatCreators(creators?: ZoteroCreator[]): string {
   if (!creators?.length) return "";

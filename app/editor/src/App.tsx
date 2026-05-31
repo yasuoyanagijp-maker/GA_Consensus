@@ -28,6 +28,7 @@ export default function App() {
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
   const [publishing, setPublishing] = useState(false);
+  const [caching, setCaching] = useState(false);
   const [editorSplitPercent, setEditorSplitPercent] = useState<number>(() => {
     const n = Number(window.localStorage.getItem(layoutKeyEditor));
     return Number.isFinite(n) && n >= 20 && n <= 80 ? n : 50;
@@ -232,6 +233,22 @@ export default function App() {
     }
   };
 
+  const cacheZotero = async () => {
+    if (READ_ONLY || caching) return;
+    setCaching(true);
+    try {
+      setStatus("リンク文献をオフライン保存中…（メタデータ + PDF を取得）");
+      const r = await api.cacheLinkedZotero();
+      const failNote = r.failed.length ? ` / 取得失敗 ${r.failed.length}` : "";
+      setStatus(`オフライン保存完了: 文献 ${r.cachedMeta} 件 / PDF ${r.cachedPdf} 件${failNote}（「リモートへ公開」で反映）`);
+      setTimeout(() => setStatus(""), 8000);
+    } catch (e) {
+      setStatus(`オフライン保存エラー: ${e}`);
+    } finally {
+      setCaching(false);
+    }
+  };
+
   const openStudioDraft = useCallback(async (runId: string, absPath: string) => {
     try {
       setStatus("ドラフトを読み込み中…");
@@ -365,9 +382,20 @@ export default function App() {
               <button
                 type="button"
                 className="btn"
+                onClick={cacheZotero}
+                disabled={caching}
+                title="リンク済み文献のメタデータとPDFをローカル保存（公開するとリモートでも閲覧可）"
+              >
+                {caching ? "保存中…" : "Zoteroをオフライン保存"}
+              </button>
+            )}
+            {!READ_ONLY && (
+              <button
+                type="button"
+                className="btn"
                 onClick={publish}
                 disabled={publishing}
-                title="保存中の変更を含め、公開サイト（GitHub Pages）へ反映します"
+                title="保存中の変更とオフライン文献を、公開サイト（GitHub Pages）へ反映します"
               >
                 {publishing ? "公開中…" : "リモートへ公開"}
               </button>

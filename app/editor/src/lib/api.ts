@@ -59,6 +59,34 @@ const getStaticBundle = async () => {
   return staticBundlePromise;
 };
 
+type ZoteroCacheEntry = {
+  key: string;
+  title?: string;
+  creators?: string;
+  date?: string;
+  publicationTitle?: string;
+  DOI?: string;
+  url?: string;
+  abstractNote?: string;
+  hasPdf?: boolean;
+  pdfFile?: string | null;
+};
+let zoteroItemsPromise: Promise<Record<string, ZoteroCacheEntry>> | null = null;
+const getStaticZoteroItems = async () => {
+  zoteroItemsPromise ??= fetch("./static-data/zotero/items.json")
+    .then((r) => (r.ok ? (r.json() as Promise<Record<string, ZoteroCacheEntry>>) : {}))
+    .catch(() => ({}));
+  return zoteroItemsPromise;
+};
+let citationLinksPromise: Promise<CitationLinkMap> | null = null;
+const getStaticCitationLinks = async () => {
+  citationLinksPromise ??= fetch("./static-data/citation-links.json")
+    .then((r) => (r.ok ? (r.json() as Promise<CitationLinkMap>) : {}))
+    .catch(() => ({}));
+  return citationLinksPromise;
+};
+const staticPdfUrl = (key: string) => `./static-data/zotero/pdfs/${key}.pdf`;
+
 export const api = {
   health: async () => {
     if (READ_ONLY) return { ok: true, zoteroConfigured: false };
@@ -104,7 +132,10 @@ export const api = {
         body: JSON.stringify({ key }),
       }),
     ),
-  getCitationLinks: () => json<CitationLinkMap>(fetch(apiUrl("/api/citation-links"))),
+  getCitationLinks: async () => {
+    if (READ_ONLY) return getStaticCitationLinks();
+    return json<CitationLinkMap>(fetch(apiUrl("/api/citation-links")));
+  },
   saveCitationLinks: (map: CitationLinkMap) =>
     json<{ ok: boolean }>(
       fetch(apiUrl("/api/citation-links"), {
@@ -148,9 +179,33 @@ export const api = {
     ),
   searchZotero: (q: string) =>
     json<{ items: ZoteroSearchHit[] }>(fetch(apiUrl(`/api/zotero/search?q=${encodeURIComponent(q)}`))),
-  getZoteroItem: (key: string) =>
-    json<ZoteroItemDetail>(fetch(apiUrl(`/api/zotero/item/${encodeURIComponent(key)}`))),
-  pdfUrl: (key: string) => apiUrl(`/api/zotero/item/${key}/pdf`),
+  getZoteroItem: async (key: string): Promise<ZoteroItemDetail> => {
+    if (READ_ONLY) {
+      const items = await getStaticZoteroItems();
+      const c = items[key];
+      if (!c) throw new Error(`オフライン保存されていない文献です（公開前に「Zoteroをオフライン保存」を実行してください）`);
+      return {
+        key: c.key,
+        title: c.title,
+        creators: c.creators,
+        date: c.date,
+        publicationTitle: c.publicationTitle,
+        DOI: c.DOI,
+        url: c.url,
+        abstractNote: c.abstractNote ?? "",
+        hasPdf: Boolean(c.hasPdf),
+        pdfAttachmentKey: null,
+        pdfUrl: c.hasPdf ? staticPdfUrl(key) : null,
+        pdfSource: c.hasPdf ? "external_url" : null,
+      };
+    }
+    return json<ZoteroItemDetail>(fetch(apiUrl(`/api/zotero/item/${encodeURIComponent(key)}`)));
+  },
+  cacheLinkedZotero: () =>
+    json<{ ok: boolean; totalKeys: number; cachedMeta: number; cachedPdf: number; failed: string[] }>(
+      fetch(apiUrl("/api/zotero/cache-linked"), { method: "POST" }),
+    ),
+  pdfUrl: (key: string) => (READ_ONLY ? staticPdfUrl(key) : apiUrl(`/api/zotero/item/${key}/pdf`)),
 
   // --- Textbook Studio pipeline ---
   runPipeline: (body: PipelineRunRequest) =>

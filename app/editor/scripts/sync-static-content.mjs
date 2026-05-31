@@ -7,6 +7,8 @@ const projectRoot = path.resolve(scriptDir, "..");
 const sourceDir = path.resolve(projectRoot, "..", "..", "content", "drafts", "ga_consensus");
 const outDir = path.resolve(projectRoot, "public", "static-data");
 const outFile = path.resolve(outDir, "ga-consensus-files.json");
+const linksSource = path.resolve(sourceDir, ".zotero-citation-map.json");
+const linksOut = path.resolve(outDir, "citation-links.json");
 
 async function main() {
   const entries = await fs.readdir(sourceDir, { withFileTypes: true });
@@ -25,6 +27,11 @@ async function main() {
   await fs.mkdir(outDir, { recursive: true });
   await fs.writeFile(outFile, JSON.stringify({ files: payload }, null, 2), "utf8");
   console.log(`Wrote ${payload.length} files to ${path.relative(projectRoot, outFile)}`);
+
+  // Bundle the citation-link map so the read-only remote can render clickable [n].
+  const linksJson = await fs.readFile(linksSource, "utf8").catch(() => "{}");
+  await fs.writeFile(linksOut, linksJson, "utf8");
+  console.log(`Wrote citation links to ${path.relative(projectRoot, linksOut)}`);
 }
 
 main().catch((err) => {
