@@ -10,7 +10,7 @@
     "abstractNote": "<h4>Importance</h4>Clinical trials in recent years have shown significant effectiveness of complement inhibitors for geographic atrophy (GA) treatment. Two complement inhibitor drugs have been approved by the Food and Drug Administration (FDA).<h4>Objective</h4>to compare and rank the different complement inhibitors in the treatment of GA secondary to age-related macular degeneration (AMD).<h4>Data sources</h4>A systematic literature search was conducted in the Cochrane Central, Web of Science Core Collection, PubMed, LWW Medical Journals, ClinicalTrials.gov, and WHO ICTRP from inception to October 2023.<h4>Study selection</h4>All randomized clinical trials evaluating the effectiveness of complement inhibitors in patients diagnosed with secondary GA in AMD were identified.<h4>Data extraction and synthesis</h4>This study followed Preferred Reporting Items for Systematic reviews and Meta-Analyses (PRISMA) network meta-analysis Checklist of Items and the Cochrane Risk of Bias Assessment Tool for assessing the study quality. Multiple authors independently coded all titles and abstracts, reviewed full-text articles against the inclusion and exclusion criteria, and resolved all discrepancies by consensus. Random-effects network meta-analyses were applied. Bayesian network meta-analysis was performed using the BUGSnet package in R (4.2.0).<h4>Main outcomes and measures</h4>The primary efficacy outcome was the change in GA lesion size (mm<sup>2</sup>) from baseline to month 12. The secondary efficacy outcome was the mean change in best-corrected visual acuity (BCVA) from baseline to month 12. Safety outcome measures included the number of subjects with serious adverse events (SAEs) and macular neovascularization (MNV).<h4>Results</h4>Ten randomized controlled trials including 4,405 participants and five complement inhibitors were identified. Comparison with sham and SUCRA analysis showed that avacincaptad pegol 2 mg (MD: -0.58, 95% CrI: -0.97 to -0.18, SUCRA: 93.55), pegcetacoplan monthly (MD: -0.38, 95% CrI: -0.57 to -0.20, SUCRA: 81.37), and pegcetacoplan every other month (MD: -0.30, 95% CrI: -0.49 to -0.11, SUCRA: 70.16) have significant changes in GA lesion reduction. No treatments showed significant changes in BCVA and SAE compared with sham. Pegcetacoplan monthly (OR: 4.30, 95% CrI: 1.48-16.72) increased the risk of MNV. Avacincaptad pegol 2 mg demonstrated favorable outcomes in terms of SAE and MNV.<h4>Conclusion and relevance</h4>Avacincaptad pegol 2 mg is the most effective complement inhibitor with better safety for the treatment of GA secondary to AMD.<h4>Systematic review registration</h4>https://www.crd.york.ac.uk/prospero/display_record.php?ID=CRD42022351515, Identifier PROSPERO CRD42022351515.",
     "hasPdf": true,
     "pdfFile": "Y9JV8W4A.pdf",
-    "cachedAt": "2026-05-31T21:37:20.613Z"
+    "cachedAt": "2026-05-31T22:14:19.767Z"
   },
   "Y2WQQFCJ": {
     "key": "Y2WQQFCJ",
@@ -23,7 +23,7 @@
     "abstractNote": "<h4>Background/objectives</h4>To assess the safety and efficacy of avacincaptad pegol (ACP), a C5 inhibitor, for geographic atrophy (GA) secondary to age-related macular degeneration (AMD) over an 18-month treatment course.<h4>Subjects/methods</h4>This study was an international, prospective, randomized, double-masked, sham-controlled, phase 2/3 clinical trial that consisted of 2 parts. In part 1, 77 participants were randomized 1:1:1 to receive monthly intravitreal injections of ACP 1 mg, ACP 2 mg, or sham. In part 2, 209 participants were randomized 1:2:2 to receive monthly ACP 2 mg, ACP 4 mg, or sham. The mean rate of change of GA over 18 months was measured by fundus autofluorescence.<h4>Results</h4>Compared with their respective sham cohorts, monthly ACP treatment reduced the mean GA growth (square root transformation) over 18 months by 28.1% (0.168 mm, 95% CI [0.066, 0.271]) for the 2 mg cohort and 30.0% (0.167 mm, 95% CI [0.062, 0.273]) for the 4 mg cohort. ACP treatment was generally well tolerated over 18 months, with most ocular adverse events (AEs) related to the injection procedure. Macular neovascularization (MNV) was more frequent in both 2 mg (11.9%) and 4 mg (15.7%) cohorts than their respective sham control groups (2.7% and 2.4%).<h4>Conclusions</h4>Over this 18-month study, ACP 2 mg and 4 mg showed continued reductions in the progression of GA growth compared to sham and continued to be generally well tolerated. A pivotal phase 3 GATHER2 trial is currently underway to support the efficacy and safety of ACP as a potential treatment for GA.",
     "hasPdf": true,
     "pdfFile": "Y2WQQFCJ.pdf",
-    "cachedAt": "2026-05-31T21:37:23.229Z"
+    "cachedAt": "2026-05-31T22:14:21.971Z"
   },
   "HB9RLM5K": {
     "key": "HB9RLM5K",
@@ -36,7 +36,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:23.912Z"
+    "cachedAt": "2026-05-31T22:14:22.713Z"
   },
   "SMKD8AI2": {
     "key": "SMKD8AI2",
@@ -49,7 +49,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:24.599Z"
+    "cachedAt": "2026-05-31T22:14:23.405Z"
   },
   "BP4RNZ6Z": {
     "key": "BP4RNZ6Z",
@@ -62,7 +62,7 @@
     "abstractNote": "The approval of Syfovre® (pegcetacoplan) and Iverzay® (avacincaptad pegol) for the treatment of geographic atrophy (GA) marks a significant advancement in retinal disease therapy, offering both complement 3 and complement 5 inhibitors. With this breakthrough, an increase in intravitreal injections (IVI) is expected to treat GA, raising questions about potential effects on intraocular pressure (IOP). This concern is exacerbated by the larger injection volume required for GA treatment, potentially impacting IOP. Previous studies have shown that IVI can lead to a temporary increase in IOP with a 0.05 ml injection. This transient elevation is challenging to manage with glaucoma drops, and a preventive approach, such as paracentesis immediately before IVIs, may be more effective. Despite concerns, clinical significance and long-term effects of IOP changes with a 0.05 ml injection remain uncertain. To address these concerns, routine evaluations including macular optical coherence tomography (OCT), fundus autofluorescence, IOP measurements, and retinal nerve fiber layer OCT before the first IVI with avacincaptad pegol and pegcetacoplan are recommended to detect potential changes early. Further research is needed to determine the extent to which IOP changes impact GA patients and whether cumulative effects occur with repeated IVIs, especially in those with additional eye conditions.",
     "hasPdf": true,
     "pdfFile": "BP4RNZ6Z.pdf",
-    "cachedAt": "2026-05-31T21:37:27.356Z"
+    "cachedAt": "2026-05-31T22:14:26.075Z"
   },
   "YPXL5K2D": {
     "key": "YPXL5K2D",
@@ -75,7 +75,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:28.908Z"
+    "cachedAt": "2026-05-31T22:14:27.492Z"
   },
   "KAHT53AT": {
     "key": "KAHT53AT",
@@ -88,7 +88,7 @@
     "abstractNote": "",
     "hasPdf": true,
     "pdfFile": "KAHT53AT.pdf",
-    "cachedAt": "2026-05-31T21:37:31.444Z"
+    "cachedAt": "2026-05-31T22:14:28.290Z"
   },
   "QIKEHLG3": {
     "key": "QIKEHLG3",
@@ -101,7 +101,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:32.150Z"
+    "cachedAt": "2026-05-31T22:14:28.969Z"
   },
   "E4577WJS": {
     "key": "E4577WJS",
@@ -114,7 +114,7 @@
     "abstractNote": "<b>Purpose:</b> To examine the clinical usage and safety profile in real-world patients with age-related macular degeneration (AMD) receiving intravitreal pegcetacoplan (Syfovre) for the treatment of geographic atrophy, and to explore the effect of intravitreal pegcetacoplan on neovascular AMD (nAMD) disease activity. <b>Methods:</b> Information on patient demographics, AMD classification, treatment history, visual acuity, and ocular adverse events were extracted from the electronic medical records. <b>Results:</b> A total of 1069 patients (1451 eyes) initiated intravitreal pegcetacoplan treatment between February 2023 and October 2023 and were followed up until March 2024. Patients received a mean (±SD) 3.3 ± 2.1 injections, and the mean (±SD) follow-up after pegcetacoplan administration was 7.5 ± 2.3 months. The majority of this cohort displayed stable visual acuity throughout treatment, with logMAR values in 821 patients remaining within 0.20 of the initial value. Ocular hypertension occurred in 36 patients (2.5% of eyes). Seventy-six patients (5.2% of eyes) with non-neovascular AMD at treatment initiation subsequently developed nAMD. Five patients (0.34% of eyes) had intraocular inflammation, including 3 with anterior uveitis, 1 with nonocclusive retinal vasculitis, and 1 with hemorrhagic occlusive retinal vasculitis with subsequent poor outcomes. A rate of retinal vasculitis of 0.03% per injection and a rate of overall intraocular inflammation of 0.1% per injection were observed. In total, 460 patients with nAMD received intravitreal pegcetacoplan. Stability of the anti-vascular endothelial growth factor (anti-VEGF) treatment interval was observed in 289 of 396 patients (73%). Preserved or improved visual acuity while undergoing anti-VEGF therapy was noted in 384 of 396 patients (97%). <b>Conclusions:</b> Real-world data on intravitreal pegcetacoplan treatment identifies clinician practice patterns and demonstrates an acceptable safety profile, with complications leading to long-term vision loss following pegcetacoplan administration being rare in this cohort.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:33.331Z"
+    "cachedAt": "2026-05-31T22:14:30.022Z"
   },
   "P2IT3BYL": {
     "key": "P2IT3BYL",
@@ -127,7 +127,7 @@
     "abstractNote": "Geographic atrophy (GA) is an advanced form of age-related macular degeneration (AMD) that leads to progressive and irreversible loss of visual function. Geographic atrophy is defined by the presence of sharply demarcated atrophic lesions of the outer retina, resulting from loss of photoreceptors, retinal pigment epithelium (RPE), and underlying choriocapillaris. These lesions typically appear first in the perifoveal macula, initially sparing the foveal center, and over time often expand and coalesce to include the fovea. Although the kinetics of GA progression are highly variable among individual patients, a growing body of evidence suggests that specific characteristics may be important in predicting disease progression and outcomes. This review synthesizes current understanding of GA progression in AMD and the factors known or postulated to be relevant to GA lesion enlargement, including both affected and fellow eye characteristics. In addition, the roles of genetic, environmental, and demographic factors in GA lesion enlargement are discussed. Overall, GA progression rates reported in the literature for total study populations range from 0.53 to 2.6 mm<sup>2</sup>/year (median, ∼1.78 mm<sup>2</sup>/year), assessed primarily by color fundus photography or fundus autofluorescence (FAF) imaging. Several factors that could inform an individual's disease prognosis have been replicated in multiple cohorts: baseline lesion size, lesion location, multifocality, FAF patterns, and fellow eye status. Because best-corrected visual acuity does not correspond directly to GA lesion enlargement due to possible foveal sparing, alternative assessments are being explored to capture the relationship between anatomic progression and visual function decline, including microperimetry, low-luminance visual acuity, reading speed assessments, and patient-reported outcomes. Understanding GA progression and its individual variability is critical in the design of clinical studies, in the interpretation and application of clinical trial results, and for counseling patients on how disease progression may affect their individual prognosis.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:34.038Z"
+    "cachedAt": "2026-05-31T22:14:30.744Z"
   },
   "3PNCIEE3": {
     "key": "3PNCIEE3",
@@ -140,7 +140,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:34.746Z"
+    "cachedAt": "2026-05-31T22:14:31.424Z"
   },
   "RYYMHTLL": {
     "key": "RYYMHTLL",
@@ -153,7 +153,7 @@
     "abstractNote": "<h4>Background</h4>Geographic atrophy (GA) is an advanced form of age-related macular degeneration leading to irreversible vision loss and negative impacts on quality of life.<h4>Methods</h4>To assess the experiences of living with GA, the Geographic Atrophy Insights Survey (GAINS) was conducted between October 12, 2021, and December 10, 2021, captured the responses of individuals ≥60 years with a self-reported GA diagnosis residing in the United States, Canada, Australia, and six European countries. Survey questions focused on the perceptions of individuals living with GA and covered six themes: speed of disease progression, effect on independence, impact on quality of life, emotional toll of GA, misconceptions and need for further education about GA, and clinician interactions. An exploratory comparison between participants with unilateral and bilateral GA was conducted.<h4>Results</h4>The survey included 203 individuals with a mean age of 70 years; 42% had bilateral GA. Most respondents (77%) agreed (\"strongly\" or \"somewhat agreed\") that GA impacted their vision faster than expected, and 68% agreed that it is hard to enjoy life fully the way they did before GA diagnosis. Regarding comparisons between individuals with bilateral and unilateral GA, both groups reported similar \"major\" or \"moderate\" negative impacts on their ability to drive (73% vs 75%, respectively), followed by the ability to read (66% vs 71%), and ability to travel as much as they would prefer (62% vs 62%). Among participants, 49% and 56% of respondents with bilateral and unilateral GA, respectively, reported major/moderate negative impacts on self-confidence and 40% of both cohorts reported major/moderate negative impacts on mental health.<h4>Conclusion</h4>Our survey provides further insight on the burden experienced by individuals living with GA. We find similar responses between unilateral and bilateral GA groups, highlighting the impact GA may have on an individual's quality of life even when only one eye is affected.",
     "hasPdf": true,
     "pdfFile": "RYYMHTLL.pdf",
-    "cachedAt": "2026-05-31T21:37:37.374Z"
+    "cachedAt": "2026-05-31T22:14:32.225Z"
   },
   "YN8VLZMU": {
     "key": "YN8VLZMU",
@@ -166,7 +166,7 @@
     "abstractNote": "<h4>Introduction</h4>Geographic atrophy (GA) occurs in the later stages of dry age-related macular degeneration (AMD) and impairs visual acuity, eventually causing permanent blindness in some patients and impacting patient quality of life. Patient-reported outcome (PRO) measures that assess the experience of patients with visual impairment do not sufficiently capture all concepts salient to patients with GA. In this study the experience of patients with GA secondary to dry AMD was evaluated, and items from the novel 10-item Visual Impairment Symptom Severity Assessment (VISSA-10) PRO instrument were mapped to salient symptoms to assess its content validity, ease of use, and relevance.<h4>Methods</h4>Concept elicitation interviews were conducted with patients with GA to determine salient symptoms and impacts of GA, and a conceptual model was developed to reflect these. The items in the VISSA-10 instrument were then mapped onto the salient symptoms included in this conceptual model. Cognitive debriefing interviews were also conducted with the same cohort to determine the comprehensiveness and comprehensibility of the instrument, and to qualitatively assess levels of change considered meaningful by patients.<h4>Results</h4>In total, 25 symptoms and 36 impacts were reported by 19 patients with GA, with seven symptoms and 11 impacts identified as salient. Of these, 12 symptoms and 15 impacts reported were not included in a previously published conceptual model for patients with dry AMD. Overall, eight of the ten items from the VISSA-10 instrument mapped to salient symptoms reported by patients with GA. All patients reported that the instrument was clear and easy to understand.<h4>Conclusions</h4>The VISSA-10 instrument was shown to be content valid, clear, and comprehensible, with sufficient concept coverage to measure the experience of patients with GA. Although further quantitative validation is required, this instrument has demonstrated potential for implementation in future clinical trials to evaluate the efficacy of new treatments for GA.",
     "hasPdf": true,
     "pdfFile": "YN8VLZMU.pdf",
-    "cachedAt": "2026-05-31T21:37:42.111Z"
+    "cachedAt": "2026-05-31T22:14:35.377Z"
   },
   "ZM4BQ74S": {
     "key": "ZM4BQ74S",
@@ -179,7 +179,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:42.945Z"
+    "cachedAt": "2026-05-31T22:14:36.123Z"
   },
   "TQIK9NLI": {
     "key": "TQIK9NLI",
@@ -192,7 +192,7 @@
     "abstractNote": "Geographic atrophy (GA) is an advanced form of age-related macular degeneration (AMD) and a leading cause of central vision loss. Advances in multimodal imaging for GA have improved its phenotypic characterisation, enabling more precise assessment of disease. This is increasingly important for identifying features predictive of progression to inform prognosis and guide patient counselling, enable selection for clinical trials and for disease monitoring both in routine clinical practice and in a research setting. In addition, accurately determining foveal involvement is crucial for selection of patients suitable for emerging therapies. High-resolution imaging is also important to recognise and distinguish GA subtypes such as pachychoroid GA from conventional GA, given their genetic and phenotypic differences and possible variation in response to therapy.Imaging modalities include colour fundus photography, which is widely available and allows an initial assessment of GA lesions. Fundus autofluorescence imaging permits clear visualisation of GA borders and provides an accurate topographical map of GA pattern and extent, whereas near-infrared reflectance imaging may be superior for evaluation of foveal involvement. Optical coherence tomography (OCT) allows for measurement of the ellipsoid zone which may correlate to visual function and permits differentiation between biomarkers such as nascent GA, incomplete and complete retinal pigment epithelium and outer retinal atrophy (iRORA and cRORA respectively), and identification of pachychoroid GA. Each of these have important prognostic implications and enable accurate selection for clinical trials, monitoring progression and treatment response. Emerging approaches such as red excitation light and high-resolution OCT, may provide more accurate and reliable assessment of atrophic changes. Alongside these advances, artificial intelligence-based tools show great potential in automating GA detection, characterising of structural biomarkers, measuring progression rates and screening patients for clinical trials, increasingly reliability and reproducibility. A better understanding of the important role of multimodal imaging in the classification and assessment of GA, and detection of factors that affect progression will enable clinicians to advise, monitor and, where possible, appropriately treat this major cause of sight loss.",
     "hasPdf": true,
     "pdfFile": "TQIK9NLI.pdf",
-    "cachedAt": "2026-05-31T21:37:45.875Z"
+    "cachedAt": "2026-05-31T22:14:39.007Z"
   },
   "NPV2WSW4": {
     "key": "NPV2WSW4",
@@ -205,7 +205,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:47.386Z"
+    "cachedAt": "2026-05-31T22:14:40.469Z"
   },
   "JU8MS8LJ": {
     "key": "JU8MS8LJ",
@@ -218,7 +218,7 @@
     "abstractNote": "Geographic atrophy (GA) is an advanced form of age-related macular degeneration (AMD), characterized by atrophic lesions that first start in the outer retina and progressively expand to cover the macula and the fovea, the center of the macula, leading to irreversible loss of vision over time. GA is distinct from wet or neovascular AMD (nAMD), the other form of advanced AMD. Neovascular AMD is characterized by new invading leaky blood vessels in the macula that can lead to acute vision loss. GA and nAMD may coexist in the same eye. The underlying pathophysiology of GA is complex and thought to involve chronic inflammation due to overactivation of the complement system that leads to the loss of photoreceptors, retinal pigment epithelium (RPE), and the underlying choriocapillaris. The disappearance of these structures appears as sharply demarcated atrophic lesions that are typical of GA. Researchers have reported about 1 million reported cases of GA in the United States, and about 160,000 cases occur per year. The most important risk factors for GA are increasing age and family history. Diagnosis of GA is usually made by using multimodal imaging techniques. Lesions associated with GA are highly heterogeneous, and the growth rate may differ from patient to patient. Despite the progressive nature of GA, the fovea may be spared until much later in the disease, thereby retaining central vision in patients. With time, atrophic lesions may progressively grow to involve the fovea, thereby severely impairing central vision. Vision loss can happen rapidly once the lesions reach the fovea. However, even without the involvement of the fovea, ongoing vision impairment impacting daily life may be present. Median time from GA not involving the center of the fovea (without subfoveal involvement) to GA with lesion boundary affecting the foveal center (subfoveal involvement) ranges from 1.4 to 2.5 years. GA can greatly impact patients' functioning and quality of life and limit their independence by interfering with activities of daily living, including difficulties with reading, driving, watching television, recognizing faces, and being unable to do household chores. No treatments have been available until intravitreal pegcetacoplan was recently approved by the US Food and Drug Administration for GA secondary to AMD. <b>DISCLOSURES:</b> Dr Bakri serves as a consultant to Apellis Pharmaceuticals, as well as AbbVie, Adverum, Eyepoint, iLumen, Iveric Bio, Genentech, Novartis, Outlook Therapeutics, Pixium, Regeneron, Roche, and Regenxbio. Drs Sharp, Luo, and Sarda are employees of Apellis Pharmaceuticals. Dr Bektas and Ms Khan are employees of RTI Health Solutions. Apellis developed and led the concept design of this publication, review and interpretation, approval, and decision to publish. This research was developed under a research contract between RTI Health Solutions and Apellis Pharmaceuticals and was funded by Apellis Pharmaceuticals. This supplement is to describe the disease of geographic atrophy and was funded by Apellis. Apellis Pharmaceuticals has developed Syfovre (pegcetacoplan), the first and only treatment for geographic atrophy.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:48.773Z"
+    "cachedAt": "2026-05-31T22:14:41.756Z"
   },
   "ZYV8SXJ6": {
     "key": "ZYV8SXJ6",
@@ -231,7 +231,7 @@
     "abstractNote": "<h4>Background</h4>Both age-related macular degeneration (AMD) and inherited retinal disease (IRD) can present with outer retinal atrophy at the macula. Distinguishing between IRD and geographic atrophy (GA) secondary to AMD is important for appropriate management, particularly as disease-specific treatments become available. This study investigates the utility of genetic testing for suspected IRDs in individuals with atypical macular atrophy.<h4>Methods</h4>Twenty-four participants aged over 50, presenting with macular atrophy atypical for AMD, underwent clinical assessments, multimodal retinal imaging and exome-based sequencing covering known IRD genes. Three retinal ophthalmologists reviewed genetic and clinical data to reach a consensus for the underlying cause of macular atrophy and identified a set of features that challenge an AMD diagnosis and suggest a higher likelihood of an IRD.<h4>Results</h4>The panel judged 58% of atypical atrophy cases as likely being an IRD. Of these suspected cases, 57% (33% of the entire cohort) received IRD genetic confirmation (PRPH2, ABCA4 or MT-TL1 [m.3243A>G]-related IRD). The remaining cases were classified as GA (29%) or did not reach consensus on the likely diagnosis (13%). Clinical features aiding in the differentiation of IRD from GA included symptom onset before age 50, family history, distinctive autofluorescence patterns (speckled, reticular or widespread), extensive atrophy and absence of subretinal drusen.<h4>Conclusion</h4>IRD genetic testing is valuable if a positive identification is achieved, but negative results neither rule out IRD nor confirm AMD. Limitations in our ability to robustly differentiate IRD-related atrophy from GA, especially in advanced lesions, need further research to improve diagnostic accuracy.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:49.595Z"
+    "cachedAt": "2026-05-31T22:14:42.416Z"
   },
   "JNKTEXY9": {
     "key": "JNKTEXY9",
@@ -244,7 +244,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:50.658Z"
+    "cachedAt": "2026-05-31T22:14:43.494Z"
   },
   "Q724NSLV": {
     "key": "Q724NSLV",
@@ -257,7 +257,7 @@
     "abstractNote": "Accurate diagnosis of both age-related macular degeneration (AMD) and inherited retinal diseases (IRD) with macular atrophy is important because treatments for both conditions are emerging. Phenotypical similarities between macular atrophy associated with AMD (geographic atrophy, GA) and IRD-associated atrophy exist, which can make accurate diagnosis challenging in clinical practice. Misdiagnosis may lead to inappropriate treatment strategies and missed opportunities for disease-specific interventions. A retrospective clinical review of medical records of people diagnosed with AMD between 1995 and 2023 from a large multidisciplinary private ophthalmic practice in Australia was undertaken to identify cases of patients diagnosed with geographic atrophy without drusen, which was then further assessed for potentially missed IRD with macular atrophy. Flagged cases were presented to experts in AMD and IRD to establish a most-likely diagnosis. Cases without consensus between graders were grouped into most-likely diagnosis by a third senior retinal clinician. Of the 1136 cases reviewed, the possible rate of misdiagnosis observed was 1.9%, with 1.0% representing potentially missed IRDs, most commonly pattern dystrophy (0.5%). A multi-modal approach, including clinical features and patient history, is important to limit the possibility of misdiagnosis of GA, and identify a subset of patients who might benefit from genetic testing prior to considering possible treatments.",
     "hasPdf": true,
     "pdfFile": "Q724NSLV.pdf",
-    "cachedAt": "2026-05-31T21:37:55.105Z"
+    "cachedAt": "2026-05-31T22:14:46.092Z"
   },
   "KYAYZ8RS": {
     "key": "KYAYZ8RS",
@@ -270,7 +270,7 @@
     "abstractNote": "<h4>Purpose</h4>To automatically classify retinal atrophy according to its etiology, using fundus autofluorescence (FAF) images, using a deep learning model.<h4>Methods</h4>In this study, FAF images of patients with advanced dry age-related macular degeneration (AMD), also called geographic atrophy (GA), and genetically confirmed inherited retinal diseases (IRDs) in late atrophic stages [Stargardt disease (STGD1) and Pseudo-Stargardt Pattern Dystrophy (PSPD)] were included. The FAF images were used to train a multi-layer deep convolutional neural network (CNN) to differentiate on FAF between atrophy in the context of AMD (GA) and atrophy secondary to IRDs. Three-hundred fourteen FAF images were included, of which 110 images were of GA eyes and 204 were eyes with genetically confirmed STGD1 or PSPD. In the first approach, the CNN was trained and validated with 251 FAF images. Established augmentation techniques were used and an Adam optimizer was used for training. For the subsequent testing, the built classifiers were then tested with 63 untrained FAF images. The visualization method was integrated gradient visualization. In the second approach, 10-fold cross-validation was used to determine the model's performance.<h4>Results</h4>In the first approach, the best performance of the model was obtained using 10 epochs, with an accuracy of 0.92 and an area under the curve for Receiver Operating Characteristic (AUC-ROC) of 0.981. Mean accuracy was 87.30聽卤聽2.96. In the second approach, a mean accuracy of 0.79聽卤聽0.06 was obtained.<h4>Conclusion</h4>This study describes the use of a deep learning-based algorithm to automatically classify atrophy on FAF imaging according to its etiology. Accurate differential diagnosis between GA and late-onset IRDs masquerading as GA on FAF can be performed with good accuracy and AUC-ROC values.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:37:55.861Z"
+    "cachedAt": "2026-05-31T22:14:46.802Z"
   },
   "NLDJ97IG": {
     "key": "NLDJ97IG",
@@ -283,7 +283,7 @@
     "abstractNote": "To compare clinical and imaging characteristics of extensive macular atrophy with pseudodrusen-like appearance (EMAP) versus diffuse-trickling geographic atrophy (DTGA) and non-diffuse-trickling geographic atrophy (nDTGA) phenotypes of age-related macular degeneration. Prospective, observational study performed in the Ophthalmology Department of IRCCS San Raffaele Hospital between January 2015 and January 2021. Patients examination included fundus autofluorescence (FAF) and optical coherence tomography at baseline and follow-up visits. We measured subfoveal choroidal thickness (SCT), Sattler/choroid ratio (SCR), choroidal vascularity index and ellipsoid zone disruption distance on OCT scans. We calculated progression rates and circularity of the atrophic lesions on FAF images. These variables were compared between the three groups and correlations with progression rates and visual acuity were assessed. Sixty-three eyes from 63 patients were included: 18 with EMAP, 18 with DTGA and 27 with nDTGA. Mean follow-up was 3.73 ± 2.12 years. EMAP and DTGA shared a faster progression, lower circularity and SCR, and higher EZ disruption distance than nDTGA, while SCT and CVI were similar between the three groups. Baseline circularity and SCR correlated with progression rates. EMAP and DTGA show similar OCT and FAF characteristics, which differ from nDTGA.",
     "hasPdf": true,
     "pdfFile": "NLDJ97IG.pdf",
-    "cachedAt": "2026-05-31T21:38:00.428Z"
+    "cachedAt": "2026-05-31T22:14:49.002Z"
   },
   "ML4VAYG9": {
     "key": "ML4VAYG9",
@@ -296,7 +296,7 @@
     "abstractNote": "Geographic atrophy (GA) secondary to age-related macular degeneration is a chronic degenerative disease involving the retinal pigment epithelium, photoreceptors, and choriocapillaris leading to irreversible loss of visual function. Identification of imaging markers associated with GA development and progression has progressed over the past decades, moving from two-dimensional to three-dimensional imaging, as well as image interpretation using artificial intelligence. However, there is an open discussion about the \"must-haves\" for GA detection and follow-up as well as complementary imaging. This practical approach provides an overview of the advantages of key imaging modalities for GA and their applicability in clinical and experimental settings.",
     "hasPdf": true,
     "pdfFile": "ML4VAYG9.pdf",
-    "cachedAt": "2026-05-31T21:38:03.624Z"
+    "cachedAt": "2026-05-31T22:14:51.891Z"
   },
   "29JCJJN6": {
     "key": "29JCJJN6",
@@ -309,7 +309,7 @@
     "abstractNote": "<h4>Purpose</h4>To develop consensus terminology and criteria for defining atrophy based on OCT findings in the setting of age-related macular degeneration (AMD).<h4>Design</h4>Consensus meeting.<h4>Participants</h4>Panel of retina specialists, image reading center experts, retinal histologists, and optics engineers.<h4>Methods</h4>As part of the Classification of Atrophy Meetings (CAM) program, an international group of experts surveyed the existing literature, performed a masked analysis of longitudinal multimodal imaging for a series of eyes with AMD, and reviewed the results of this analysis to define areas of agreement and disagreement. Through consensus discussions at 3 meetings over 12 months, a classification system based on OCT was proposed for atrophy secondary to AMD. Specific criteria were defined to establish the presence of atrophy.<h4>Main outcome measures</h4>A consensus classification system for atrophy and OCT-based criteria to identify atrophy.<h4>Results</h4>OCT was proposed as the reference standard or base imaging method to diagnose and stage atrophy. Other methods, including fundus autofluorescence, near-infrared reflectance, and color imaging, provided complementary and confirmatory information. Recognizing that photoreceptor atrophy can occur without retinal pigment epithelium (RPE) atrophy and that atrophy can undergo an evolution of different stages, 4 terms and histologic candidates were proposed: complete RPE and outer retinal atrophy (cRORA), incomplete RPE and outer retinal atrophy, complete outer retinal atrophy, and incomplete outer retinal atrophy. Specific OCT criteria to diagnose cRORA were proposed: (1) a region of hypertransmission of at least 250 μm in diameter, (2) a zone of attenuation or disruption of the RPE of at least 250 μm in diameter, (3) evidence of overlying photoreceptor degeneration, and (4) absence of scrolled RPE or other signs of an RPE tear.<h4>Conclusions</h4>A classification system and criteria for OCT-defined atrophy in the setting of AMD has been proposed based on an international consensus. This classification is a more complete representation of changes that occur in AMD than can be detected using color fundus photography alone. Longitudinal information is required to validate the implied risk of vision loss associated with these terms. This system will enable such future studies to be undertaken using consistent definitions.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:04.349Z"
+    "cachedAt": "2026-05-31T22:14:52.668Z"
   },
   "HD2992QZ": {
     "key": "HD2992QZ",
@@ -322,7 +322,7 @@
     "abstractNote": "<h4>Background/aims</h4>With a paradigm shift in geographic atrophy (GA) treatments now available, establishing consensus on the identification and diagnosis of the disease along with considerations for management of patients with GA will assist eye care professionals (ECP) in their day-to-day practices, leading to improved patient outcomes.<h4>Methods</h4>A modified Delphi panel process (Geographic Atrophy Management Consensus) consisting of three total surveys and one virtual live meeting held between survey 2 and survey 3. Data were collected from July to October 2022. Participants included expert members of the eye care community that have demonstrated outstanding leadership among peers: a steering committee with three ECPs and a 15-member panel divided between five optometrists, five comprehensive ophthalmologists and five retina specialists. Consensus on statements related to the management of patients with GA was calculated using the RAND/UCLA Appropriateness Method.<h4>Results</h4>At the conclusion of the third survey, consensus was reached on 91% of the 77 statements. Critical consensus topics include: (1) optical coherence tomography as the favoured method to diagnose and monitor GA, (2) preferred practice patterns regarding referral of patients to retina specialists and (3) treatment criteria given the advent of emerging therapeutics for GA.<h4>Conclusions</h4>Generating awareness of early signs of disease development, progression and identifying the best tools to evaluate GA establishes ideal management and referral strategies. Given the paradigm shift in GA management driven by approved therapies, coupled with the fact that the disease is progressive resulting in devastating vision loss, these strategies are critical to ensure best overall outcomes.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:05.676Z"
+    "cachedAt": "2026-05-31T22:14:53.858Z"
   },
   "7M3U4FSD": {
     "key": "7M3U4FSD",
@@ -335,7 +335,7 @@
     "abstractNote": "<h4>Background and objective</h4>Geographic atrophy (GA) is a form of late-stage age-related macular degeneration (AMD). This study aims to characterize the journey of patients with GA in real-world ophthalmology practice.<h4>Patients and methods</h4>This is a retrospective cohort study of 100 patients with GA and 100 with intermediate AMD (iAMD).<h4>Results</h4>Approximately one-third of GA patients' eyes had GA at the time of their initial AMD diagnosis, and nearly half of the iAMD patients' eyes had iAMD at that time. When holding confounders constant, GA patients experienced significantly worse visual acuity outcomes, and a significantly higher proportion required referrals for low vision evaluation, needed assistance for activities of daily living, failed to meet driving standards, and met criteria for legal blindness when compared to iAMD controls.<h4>Conclusions</h4>Many patients have already progressed to GA by the time they receive an AMD diagnosis, emphasizing the importance of providing early detection and intervention, especially considering novel treatment options. <b>[<i>Ophthalmic Surg Lasers Imaging Retina</i> 2024;55:204-210.]</b>.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:06.378Z"
+    "cachedAt": "2026-05-31T22:14:54.528Z"
   },
   "8HPAJ4D8": {
     "key": "8HPAJ4D8",
@@ -348,7 +348,7 @@
     "abstractNote": "Geographic atrophy is an eye disease that greatly interferes with the daily lives of patients and their families, posing a serious threat to the aging European demographic. Over the past 30 months, this initiative has assembled leading experts in the field of ophthalmology to share insights on the necessary policy steps that need to be taken to overcome this challenge on an EU-wide scale. Through analyzing best practices in Germany, Italy, France, and Spain, this consensus paper sets out a series of policy recommendations, which, if implemented, could greatly benefit all individuals affected by geographic atrophy. Amongst other features, these countries have provided valuable examples of awareness campaigns and an overall commitment to inclusive and comprehensive policies. The policy recommendations emerging from this paper include the adoption of comprehensive screening programs, retinal disease screening in the EU Driving License Directive, the development of a white paper at the European Commission, and the creation of Council recommendations on eye health screening. Given the significant improvements made at the national level throughout the EU, countries will require unitary support at the European level to further develop their policies and successfully address the burden of geographic atrophy.",
     "hasPdf": true,
     "pdfFile": "8HPAJ4D8.pdf",
-    "cachedAt": "2026-05-31T21:38:08.951Z"
+    "cachedAt": "2026-05-31T22:14:57.173Z"
   },
   "XSMYJ26I": {
     "key": "XSMYJ26I",
@@ -361,7 +361,7 @@
     "abstractNote": "<h4>Clinical relevance</h4>Geographic atrophy is a leading cause of severe vision loss and is estimated to affect around 100,000 people in Australia alone. This survey is topical for clinical optometrists as the first treatment for geographic atrophy has just been approved by the Australian Therapeutics Goods Administration and may soon become available in Australia.<h4>Background</h4>Considering that treatments for geographic atrophy secondary to age-related macular degeneration are likely imminent, a survey of Australian optometrists was conducted to gauge their readiness in caring for people with geographic atrophy.<h4>Methods</h4>The Royal Australian and New Zealand College of Ophthalmologists age-related macular degeneration referral guidelines working group determined 26 survey questions relating to management of geographic atrophy. Strength of agreement questions utilised a 5-point Likert scale. Optometrists answered anonymously during January to March 2024.<h4>Results</h4>There were 101 survey responses. Almost all (97%) respondents have access to colour fundus photography, three-quarters (74%) to optical coherence tomography, and almost half (44%) to fundus autofluorescence. Almost all (97%) see patients with GA regularly, with 73% seeing at least two geographic atrophy patients per month and the majority reviewing them every 6 months. Around half were confident in differentiating geographic atrophy from inherited retinal disease (49%) and confident in identifying early signs of atrophy (44%). Around half (46%) nominated that they would refer over 50% of their current geographic atrophy patients to ophthalmology for assessment of their suitability for new treatments. Eighty-three percent would refer a patient with good vision (6/12 or better) to initiate treatment to save encroachment on the fovea. Respondents were keen to receive more education about diagnosis (88%) and new treatments (93%).<h4>Conclusion</h4>Optometrists are preparing for changes in the clinical management of geographic atrophy and are keen to receive further education to ensure optimal patient-centric care as new treatments become available.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:10.024Z"
+    "cachedAt": "2026-05-31T22:14:58.334Z"
   },
   "CTDNRKYQ": {
     "key": "CTDNRKYQ",
@@ -374,7 +374,7 @@
     "abstractNote": "Geographic atrophy (GA) causes significant vision impairment and reduction in vision-related quality of life. Fundus autofluorescence (FAF) is the gold standard of structural assessment of GA but is a surrogate marker for vision loss, which can be assessed by tests of visual function and functional vision. Best corrected visual acuity (BCVA), the most commonly used visual function test in ophthalmology, is a poor metric for assessing GA progression. This is because GA usually only affects the fovea in its late stage, grows slowly, and spared areas of retina may not 'fit' larger reading chart letters, confounding measurements. For this reason, tests of visual function have been developed, including low luminance visual acuity (LLVA), reading speed, contrast sensitivity, microperimetry, flicker perimetry, and dark adaptation. Functional vision measures are approximated through patient-reported outcomes using various questionnaires. This review explores the strength of association between FAF and tests of visual function in patients with GA. A range of targeted, prespecified endpoints of visual function testing should be included in future clinical trials for treatments of GA, focusing on GA lesion phenotypes that are known to progress rapidly in order to maximise the likelihood of identifying positive results. This is critical in jurisdictions where proof of functional benefit is required for regulatory approval of treatments for GA.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:11.098Z"
+    "cachedAt": "2026-05-31T22:14:59.391Z"
   },
   "SC7KXAU5": {
     "key": "SC7KXAU5",
@@ -387,7 +387,7 @@
     "abstractNote": "",
     "hasPdf": true,
     "pdfFile": "SC7KXAU5.pdf",
-    "cachedAt": "2026-05-31T21:38:13.254Z"
+    "cachedAt": "2026-05-31T22:15:00.729Z"
   },
   "GMCZCITT": {
     "key": "GMCZCITT",
@@ -400,7 +400,7 @@
     "abstractNote": "",
     "hasPdf": true,
     "pdfFile": "GMCZCITT.pdf",
-    "cachedAt": "2026-05-31T21:38:15.777Z"
+    "cachedAt": "2026-05-31T22:15:01.684Z"
   },
   "UHKUJ3RN": {
     "key": "UHKUJ3RN",
@@ -413,7 +413,7 @@
     "abstractNote": "",
     "hasPdf": true,
     "pdfFile": "UHKUJ3RN.pdf",
-    "cachedAt": "2026-05-31T21:38:18.626Z"
+    "cachedAt": "2026-05-31T22:15:02.633Z"
   },
   "F5IPY5EQ": {
     "key": "F5IPY5EQ",
@@ -426,7 +426,7 @@
     "abstractNote": "<h4>Purpose</h4>To examine the time burden of managing neovascular age-related macular degeneration (AMD) imposed on physicians, staff, patients, and caregivers.<h4>Design</h4>Mixed-methods, prospective, observational time-and-motion study.<h4>Methods</h4>The multicenter study was conducted from March 2011 through August 2012. Retina specialists administering ≥50 vascular endothelial growth factor (VEGF)-inhibitor injections monthly were surveyed and completed records for ≥5 patients scheduled for office visits within 3 weeks for anti-VEGF injection or monitoring. A survey was administered to 75 neovascular AMD patients aged ≥50 years who received ≥1 anti-VEGF injection in the past 6 months. Telephone interviews were conducted with 13 neovascular AMD patient caregivers.<h4>Results</h4>Fifty-six physicians provided data for 221 patients with neovascular AMD. Patients accounted for 20% of the health care staff's time per week, with an average of 23 staff members. An average patient visit for neovascular AMD was 90 minutes (range: 13 minutes to >4 hours). Patients reported an average time per visit of almost 12 hours, including preappointment preparation (16 minutes), travel (66 minutes), waiting time (37 minutes), treatment time (43 minutes), and postappointment recovery (9 hours). Patients stated that caregivers took time away from work (22%) and personal activities (28%) to provide transportation to appointments.<h4>Conclusions</h4>Neovascular AMD management imposes a substantial time burden on physicians, staff, patients, and caregivers. There may be a need for additional support and/or reimbursement for services required by patients and caregivers and provided by physicians.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:22.310Z"
+    "cachedAt": "2026-05-31T22:15:03.900Z"
   },
   "3PNPFBV5": {
     "key": "3PNPFBV5",
@@ -439,7 +439,7 @@
     "abstractNote": "<h4>Background</h4>To introduce Lean approach principles in the management of patients undergoing intravitreal injections (IVIs) for wet age-related macular degeneration.<h4>Methods</h4>Retrospective single-centre cohort study. Services location, IVIs scheduling, utilization of staff, data recording methods, ophthalmic examination and surgical procedures were analysed; a new Intravitreal Injection Centre (IVIC) was developed according to Lean principles. Mean number of daily IVIs performed, mean time between registration and discharge, mean turnover time in between patients, percentages of performed IVIs on the monthly scheduled IVIs and of patients rating their experience ⩾8/10 via standardized feedback questionnaires were retrospectively analysed.<h4>Results</h4>The mean IVIs number per day increased from 20 ± 4.08 to 50 ± 7.07, and the mean time between registration and discharge of a patient decreased from 240 ± 14.14 to 60 ± 8.16 min (<i>p</i> = 0.00057 and <i>p</i> < 0.00001, respectively). Mean turnover time in between patients decreased from 10 ± 1.41 to 8 ± 2 min (<i>p</i> = 0.055). The percentage of monthly IVIs performed on the total of scheduled IVIs increased from 60% to 100%, and the percentage of satisfied patients who rated IVIC ⩾8/10 increased from 45% to 95% (<i>p</i> = 0.0177 and <i>p</i> < 0.00105, respectively).<h4>Conclusion</h4>The IVIC improved the quality, efficiency, speed of the overall procedures and clinical capacity of the IVI service through a fast one-way route for patients, limiting time wasted and total distance travelled. This model facilitates the creation of a one-stop clinic through the just-in-time management principle and may be relevant to other ophthalmology services.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:22.985Z"
+    "cachedAt": "2026-05-31T22:15:04.641Z"
   },
   "V7RDDGB4": {
     "key": "V7RDDGB4",
@@ -452,7 +452,7 @@
     "abstractNote": "<h4>Background</h4>Intravitreal anti-vascular endothelial growth factor (anti-VEGF) injections play a key role in treating a range of macular diseases. The effectiveness of these therapies is dependent on patients' adherence (the extent to which a patient takes their medicines as per agreed recommendations from the healthcare provider) and persistence (continuation of the treatment for the prescribed duration) to their prescribed treatment regimens. The aim of this systematic review was to demonstrate the need for further investigation into the prevalence of, and factors contributing to, patient-led non-adherence and non-persistence, thus facilitating improved clinical outcomes.<h4>Methods</h4>Systematic searches were conducted in Google Scholar, Web of Science, PubMed, MEDLINE, and the Cochrane Library. Studies in English conducted before February 2023 that reported the level of, and/or barriers to, non-adherence or non-persistence to intravitreal anti-VEGF ocular disease therapy were included. Duplicate papers, literature reviews, expert opinion articles, case studies, and case series were excluded following screening by two independent authors.<h4>Results</h4>Data from a total of 409,215 patients across 52 studies were analysed. Treatment regimens included pro re nata, monthly and treat-and-extend protocols; study durations ranged from 4 months to 8 years. Of the 52 studies, 22 included a breakdown of reasons for patient non-adherence/non-persistence. Patient-led non-adherence varied between 17.5 and 35.0% depending on the definition used. Overall pooled prevalence of patient-led treatment non-persistence was 30.0% (P = 0.000). Reasons for non-adherence/non-persistence included dissatisfaction with treatment results (29.9%), financial burden (19%), older age/comorbidities (15.5%), difficulty booking appointments (8.5%), travel distance/social isolation (7.9%), lack of time (5.8%), satisfaction with the perceived improvement in their condition (4.4%), fear of injection (4.0%), loss of motivation (4.0%), apathy towards eyesight (2.5%), dissatisfaction with facilities 2.3%, and discomfort/pain (0.3%). Three studies found non-adherence rates between 51.6 and 68.8% during the COVID-19 pandemic, in part due to fear of exposure to COVID-19 and difficulties travelling during lockdown.<h4>Discussion</h4>Results suggest high levels of patient-led non-adherence/non-persistence to anti-VEGF therapy, mostly due to dissatisfaction with treatment results, a combination of comorbidities, loss of motivation and the burden of travel. This study provides key information on prevalence and factors contributing to non-adherence/non-persistence in anti-VEGF treatment for macular diseases, aiding identification of at-risk individuals to improve real-world visual outcomes. Improvements in the literature can be achieved by establishing uniform definitions and standard timescales for what constitutes non-adherence/non-persistence.<h4>Systematic review registration</h4>PROSPERO CRD42020216205.",
     "hasPdf": true,
     "pdfFile": "V7RDDGB4.pdf",
-    "cachedAt": "2026-05-31T21:38:25.792Z"
+    "cachedAt": "2026-05-31T22:15:07.611Z"
   },
   "LEJC59SJ": {
     "key": "LEJC59SJ",
@@ -465,7 +465,7 @@
     "abstractNote": "",
     "hasPdf": true,
     "pdfFile": "LEJC59SJ.pdf",
-    "cachedAt": "2026-05-31T21:38:27.937Z"
+    "cachedAt": "2026-05-31T22:15:09.580Z"
   },
   "FRTFU3PC": {
     "key": "FRTFU3PC",
@@ -478,7 +478,7 @@
     "abstractNote": "<h4>Purpose</h4>Intravitreal injection of VEGF inhibitors has become the standard of care for different macular diseases within the last years resulting in improved visual outcomes. Under real-life conditions, however, the necessity for frequent retreatments and reexaminations poses a burden for patients and treatment centers. Non-adherence and non-persistence to intravitreal treatment may lead to inferior clinical outcomes, and knowledge of contributing factors is crucial to improve adherence. This systematic review analyzes current literature for potential factors involved in non-adherence and non-persistence.<h4>Methods</h4>A systematic search was conducted in PubMed and Embase including three different aspects of intravitreal injection therapy: (1) diseases with intravitreal injections as treatment, (2) intravitreal injection, and (3) aspects of therapy adherence or therapy persistence. Data from identified quantitative studies were further extracted and grouped according to WHO criteria (condition, socio-economy, therapy, patient, and health system). The methodological quality of identified studies was graded. Identified qualitative studies (i.e., interviews) were descriptively analyzed and their findings narratively reported.<h4>Results</h4>Twenty-four publications were included. In 16 of those publications, a quantitative data analysis was conducted, analyzing factors associated with non-adherence. Worse visual acuity at baseline and unfavorable development of visual acuity, higher age, and greater distance to the treatment center were associated with non-adherence, while there was inconsistent evidence for an association of comorbidity. In qualitative studies, high follow-up/treatment burden, fear and anxiety, disappointed patient expectations, and lack of motivation to continue treatment were reported as reasons for non-persistence.<h4>Conclusions</h4>Knowledge of potential barriers in IVT treatment may improve adherence and potentially clinical results. Improvements can be achieved particularly in the healthcare complex (organizational improvements) and the \"patient\" complex by establishing realistic expectations. Recurrent education of the patient may be necessary.",
     "hasPdf": true,
     "pdfFile": "FRTFU3PC.pdf",
-    "cachedAt": "2026-05-31T21:38:30.937Z"
+    "cachedAt": "2026-05-31T22:15:12.556Z"
   },
   "IUCQ23JM": {
     "key": "IUCQ23JM",
@@ -491,7 +491,7 @@
     "abstractNote": "<h4>Purpose</h4>Patients with neovascular age-related macular degeneration (nAMD) are treated with frequent intravitreal injections to maintain vision. The treatment frequency impacts the life of patients and caregivers and poses a major capacity challenge for Norwegian ophthalmic clinics. The purpose of this survey was to document patient-reported outcomes on how the disease and the treatment impact nAMD patients in Norway.<h4>Methods</h4>Norwegian nAMD patients voluntarily completed the survey. The patients reported the time spent on each treatment appointment, the need for caregiver support, treatment intervals, and the emotional impact of the treatment. There was no active selection of patients to the survey. Respondents had to confirm the nAMD diagnosis prior to submitting the response. All data was included in the analysis as submitted by the respondents. This survey was market research involving anonymous patient data, and no participants were identifiable.<h4>Results</h4>In total, 130 patients responded to the survey. The majority of patients reported to receive nine or more injections per year (48.8%), and many patients needed caregiver support for every treatment appointment (37.7%). Patients reported to be anxious one day (25.4%), two days (8.5%), one week (10.8%) or more than one week (3.1%) prior to treatment. The week before the treatment, 33.1% of patients reported to be stressed and 15.4% struggled to sleep. The majority of patients reported the treatment as uncomfortable (54.6%) or as somewhat painful (26.2%). The results on yearly number of injections, time used each treatment day and need for caregiver support suggested a variation between Norwegian hospital regions.<h4>Conclusions</h4>This survey uncovers how treatment with intravitreal injections represents a substantial burden for Norwegian patients with nAMD. Future research on how the treatment burden impacts nAMD patients may lead to more patient-centered care and help guide treatment decisions. New treatments with longer intervals between injections are likely to both reduce the treatment burden and improve capacity in ophthalmology clinics.",
     "hasPdf": true,
     "pdfFile": "IUCQ23JM.pdf",
-    "cachedAt": "2026-05-31T21:38:33.712Z"
+    "cachedAt": "2026-05-31T22:15:13.454Z"
   },
   "6FZ4C6PK": {
     "key": "6FZ4C6PK",
@@ -504,7 +504,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:34.893Z"
+    "cachedAt": "2026-05-31T22:15:14.569Z"
   },
   "59JVHJ38": {
     "key": "59JVHJ38",
@@ -517,7 +517,7 @@
     "abstractNote": "<h4>Purpose</h4>To summarize the results of 2 consensus meetings (Classification of Atrophy Meeting [CAM]) on conventional and advanced imaging modalities used to detect and quantify atrophy due to late-stage non-neovascular and neovascular age-related macular degeneration (AMD) and to provide recommendations on the use of these modalities in natural history studies and interventional clinical trials.<h4>Design</h4>Systematic debate on the relevance of distinct imaging modalities held in 2 consensus meetings.<h4>Participants</h4>A panel of retina specialists.<h4>Methods</h4>During the CAM, a consortium of international experts evaluated the advantages and disadvantages of various imaging modalities on the basis of the collective analysis of a large series of clinical cases. A systematic discussion on the role of each modality in future studies in non-neovascular and neovascular AMD was held.<h4>Main outcome measures</h4>Advantages and disadvantages of current retinal imaging technologies and recommendations for their use in advanced AMD trials.<h4>Results</h4>Imaging protocols to detect, quantify, and monitor progression of atrophy should include color fundus photography (CFP), confocal fundus autofluorescence (FAF), confocal near-infrared reflectance (NIR), and high-resolution optical coherence tomography volume scans. These images should be acquired at regular intervals throughout the study. In studies of non-neovascular AMD (without evident signs of active or regressed neovascularization [NV] at baseline), CFP may be sufficient at baseline and end-of-study visit. Fluorescein angiography (FA) may become necessary to evaluate for NV at any visit during the study. Indocyanine-green angiography (ICG-A) may be considered at baseline under certain conditions. For studies in patients with neovascular AMD, increased need for visualization of the vasculature must be taken into account. Accordingly, these studies should include FA (recommended at baseline and selected follow-up visits) and ICG-A under certain conditions.<h4>Conclusions</h4>A multimodal imaging approach is recommended in clinical studies for the optimal detection and measurement of atrophy and its associated features. Specific validation studies will be necessary to determine the best combination of imaging modalities, and these recommendations will need to be updated as new imaging technologies become available in the future.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:35.716Z"
+    "cachedAt": "2026-05-31T22:15:15.305Z"
   },
   "MS4CHB6U": {
     "key": "MS4CHB6U",
@@ -530,7 +530,7 @@
     "abstractNote": "<h4>Purpose</h4>To compare fundus autofluorescence (FAF) and spectral domain optical coherence tomography (OCT) measurements of geographic atrophy (GA) area and to analyze lesion area changes measured by spectral domain OCT in GATHER1.<h4>Design</h4>An assessment reliability analysis using prospective, randomized, double-masked phase 2/3 clinical trial data.<h4>Methods</h4>GATHER1 examined the efficacy and safety of avacincaptad pegol (ACP) for GA treatment. A post hoc analysis was performed to identify correlations between FAF- and OCT-based measurements of GA. GA area was measured on blue-light FAF images using semiautomatic segmentation software with support from OCT and near-infrared imaging. Machine-learning enhanced, multilayer segmentation of OCT scans were reviewed by human readers, and segmentation errors were corrected as needed. GA area was defined as total RPE loss on cross-sectional B scans. Time points included Months 0, 6, 12, and 18. Additionally, OCT-based GA-area changes between ACP and sham were analyzed.<h4>Results</h4>There was a strong correlation (r = 0.93) between FAF and OCT GA area measurements that persisted through 18 months. Mean (SD) differences between OCT and FAF GA measurements were negligible: 0.11 mm<sup>2</sup> (1.42) at Month 0, 0.03 mm<sup>2</sup> (1.62) at Month 6, -0.17 mm<sup>2</sup> (1.81) at Month 12, and -0.07 mm<sup>2</sup> (1.78) at Month 18. OCT assessments of GA growth revealed a 30% and 27% reduction at Months 12 and 18, respectively, between ACP and sham, replicating FAF measurements from GATHER1.<h4>Conclusions</h4>The strong correlation between blue FAF and OCT measurements of GA area supports OCT as a reliable method to measure GA lesion area in clinical trials.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:36.842Z"
+    "cachedAt": "2026-05-31T22:15:16.390Z"
   },
   "ZC988WS7": {
     "key": "ZC988WS7",
@@ -543,7 +543,7 @@
     "abstractNote": "Newly approved treatments for patients with geographic atrophy are changing the treatment paradigm, highlighting the need for eye care providers (ECPs) to have a set of recommendations on how to best manage GA patients. Here, we outline how to identify various stages of age-related macular degeneration including geographic atrophy (GA) by examining optimal management scenarios implicating various ECPs and reviewing treatment considerations for patients with GA. Early identification of GA will lead to optimal patient outcomes, while a standardized management scenario will reduce clinical burden among ECPs treating patients with GA.",
     "hasPdf": true,
     "pdfFile": "ZC988WS7.pdf",
-    "cachedAt": "2026-05-31T21:38:40.190Z"
+    "cachedAt": "2026-05-31T22:15:17.519Z"
   },
   "6WTWTZSY": {
     "key": "6WTWTZSY",
@@ -556,7 +556,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:40.941Z"
+    "cachedAt": "2026-05-31T22:15:18.241Z"
   },
   "K9N78SUH": {
     "key": "K9N78SUH",
@@ -569,7 +569,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:42.057Z"
+    "cachedAt": "2026-05-31T22:15:19.559Z"
   },
   "6BTFPR6Q": {
     "key": "6BTFPR6Q",
@@ -582,7 +582,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:42.784Z"
+    "cachedAt": "2026-05-31T22:15:20.201Z"
   },
   "4R9VRZ72": {
     "key": "4R9VRZ72",
@@ -595,7 +595,7 @@
     "abstractNote": "With the approval of the first two substances for the treatment of geographic atrophy (GA) secondary to age-related macular degeneration (AMD), a standardized monitoring of patients treated with complement inhibitors in clinical practice is needed. Optical coherence tomography (OCT) provides high-resolution access to the retinal pigment epithelium (RPE) and neurosensory layers, such as the ellipsoid zone (EZ), which further enhances the understanding of disease progression and therapeutic effects in GA compared to conventional fundus autofluorescence (FAF). In addition, artificial intelligence-based methodology allows the identification and quantification of GA-related pathology on OCT in an objective and standardized manner. The purpose of this study was to comprehensively evaluate automated OCT monitoring for GA compared to reading center-based manual FAF measurements in the largest successful phase 3 clinical trial data of complement inhibitor therapy to date. Automated OCT analysis of RPE loss showed a high and consistent correlation to manual GA measurements on conventional FAF. EZ loss on OCT was generally larger than areas of RPE loss, supporting the hypothesis that EZ loss exceeds underlying RPE loss as a fundamental pathophysiology in GA progression. Automated OCT analysis is well suited to monitor disease progression in GA patients treated in clinical practice and clinical trials.",
     "hasPdf": true,
     "pdfFile": "4R9VRZ72.pdf",
-    "cachedAt": "2026-05-31T21:38:47.564Z"
+    "cachedAt": "2026-05-31T22:15:22.474Z"
   },
   "E5ZJ4EQL": {
     "key": "E5ZJ4EQL",
@@ -608,7 +608,7 @@
     "abstractNote": "",
     "hasPdf": true,
     "pdfFile": "E5ZJ4EQL.pdf",
-    "cachedAt": "2026-05-31T21:38:50.861Z"
+    "cachedAt": "2026-05-31T22:15:25.110Z"
   },
   "E7PNNQ8I": {
     "key": "E7PNNQ8I",
@@ -621,7 +621,7 @@
     "abstractNote": "<h4>Purpose</h4>Geographic atrophy (GA), a late stage of age-related macular degeneration (AMD), is a major cause of blindness. Even while central visual acuity remains relatively well preserved, GA often causes considerable compromise of visual function and quality of life. No treatment currently exists. We evaluated the safety and efficacy of pegcetacoplan, a complement C3 inhibitor, for treatment of GA.<h4>Design</h4>Prospective, multicenter, randomized, sham-controlled phase 2 study.<h4>Participants</h4>Two hundred forty-six patients with GA.<h4>Methods</h4>Patients with GA were assigned randomly in a 2:2:1:1 ratio to receive intravitreal injections of 15 mg pegcetacoplan monthly or every other month (EOM) or sham intravitreal injections monthly or EOM for 12 months with follow-up at months 15 and 18. Area and growth of GA were measured using fundus autofluorescence imaging.<h4>Main outcome measures</h4>The primary efficacy end point was mean change in square root GA lesion area from baseline to month 12. Secondary outcome measures included mean change from baseline in GA lesion area without the square root transformation, distance of GA lesion from the fovea, best-corrected visual acuity (BCVA), low-luminance BCVA, and low-luminance visual acuity deficit. The primary safety end point was the number and severity of treatment-emergent adverse events.<h4>Results</h4>In patients receiving pegcetacoplan monthly or EOM, the GA growth rate was reduced by 29% (95% confidence interval [CI], 9-49; P = 0.008) and 20% (95% CI, 0-40; P = 0.067) compared with the sham treatment group. Post hoc analysis showed that the effect was greater in the second 6 months of treatment, with observed reductions of 45% (P = 0.0004) and 33% (P = 0.009) for pegcetacoplan monthly and EOM, respectively. Two cases of culture-positive endophthalmitis and 1 case of culture-negative endophthalmitis occurred in the pegcetacoplan monthly group. New-onset investigator-determined exudative AMD was reported more frequently in pegcetacoplan-treated eyes (18/86 eyes [20.9%] and 7/79 eyes [8.9%] in monthly and EOM groups, respectively) than in sham-treated eyes (1/81 eyes [1.2%]).<h4>Conclusions</h4>Local C3 inhibition with pegcetacoplan resulted in statistically significant reductions in the growth of GA compared with sham treatment. Phase 3 studies will define the efficacy and safety profile further.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:52.169Z"
+    "cachedAt": "2026-05-31T22:15:26.364Z"
   },
   "E5I4USC2": {
     "key": "E5I4USC2",
@@ -634,7 +634,7 @@
     "abstractNote": "<h4>Purpose</h4>To investigate the growth of nonexudative macular neovascularization (MNV) in age-related macular degeneration (AMD) using swept-source optical coherence tomography angiography (SS-OCTA).<h4>Methods</h4>Patients with treatment-naïve nonexudative AMD in one eye and exudative AMD in the fellow eye who underwent SS-OCTA imaging for at least 12 months were retrospectively reviewed. The MNV area measurement was quantified in eyes with treatment-naïve nonexudative MNV using ImageJ for analysing the correlation between MNV growth and the onset of exudation, as well as evaluating the consistency of the MNV growth rate during the subclinical and exudative stages. Kaplan-Meier survival analysis and logistic regression analyses were used.<h4>Results</h4>In total, 45 eyes with treatment-naïve nonexudative AMD from 45 patients were enrolled. Treatment-naïve nonexudative MNV was identified in 21 eyes (46.67%) at baseline. The development of exudative findings was noted in eight eyes (17.78%), including six eyes with previously noted nonexudative MNV. Eyes with growing MNV (increase in area ≥50% within 12 months) had an increased risk of exudation and developed exudation earlier than eyes with stable MNV (13.60 [6.43-20.77] months versus 31.11 [26.61-35.62] months, P < 0.0001, Log-rank test). Consistent growth pattern of MNV lesions was further identified in eyes with growing MNV during anti-VEGF treatment.<h4>Conclusion</h4>SS-OCTA allows to qualitatively and quantitatively evaluate nonexudative MNV in AMD patients. Growing MNV involved higher probabilities and a faster onset of exudation compared to stable MNV. Identifying the growth of MNV on OCTA might be helpful for establishing treatment strategies and follow-up planning.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:52.876Z"
+    "cachedAt": "2026-05-31T22:15:27.153Z"
   },
   "A8TBA3I2": {
     "key": "A8TBA3I2",
@@ -647,7 +647,7 @@
     "abstractNote": "Geographic atrophy (GA) affects around 5 million individuals worldwide. Genome-wide, histopathologic, in vitro and animal studies have implicated the activation of the complement system and chronic local inflammation in the pathogenesis of GA. Recently, clinical trials have demonstrated that an intravitreal injection of pegcetacoplan, a C3 inhibitor, and avacincaptad pegol, a C5 inhibitor, both statistically significantly reduce the growth of GA up to 20% in a dose-dependent fashion. Furthermore, the protective effect of both pegcetacoplan and avacincaptad appear to increase with time. However, despite these anatomic outcomes, visual function has not improved as these drugs appear to only slow down the degenerative process. Unexpected adverse events included conversion to exudative NV-AMD with both drugs. Occlusive retinal vasculitis and anterior ischemic optic neuropathy have been reported in pegcetacoplan-treated eyes.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:53.561Z"
+    "cachedAt": "2026-05-31T22:15:27.891Z"
   },
   "MSNMN6WL": {
     "key": "MSNMN6WL",
@@ -660,7 +660,7 @@
     "abstractNote": "<h4>Objective</h4>The primary goal of this study was to determine how structural and functional parameters influence the vision-related quality of life (VRQoL) in patients suffering from geographic atrophy (GA) secondary to age-related macular degeneration.<h4>Design</h4>This study was designed as a prospective, noninterventional, natural-history study (Directional Spread in Geographic-Atrophy study, NCT02051998).<h4>Subjects</h4>The research involved 82 patients with bilateral GA.<h4>Methods</h4>The study examined parameters including GA location as assessed by the ETDRS grid, best-corrected visual acuity, low-luminance visual acuity (LLVA), reading acuity, and speed. These parameters were then correlated with VRQoL, which was gauged using the National Eye Institute Visual Function Questionnaire 25. The analysis method employed was the least absolute shrinkage and selection operator with linear mixed-effects models.<h4>Main outcome measures</h4>The central parameters measured in this study encompassed GA area, VRQoL scores associated with different GA subfields, and the significance of LLVA for foveal-sparing patients.<h4>Results</h4>On average, patients showed a total GA area of 2.9 ± 1.2 mm<sup>2</sup> in the better eye (BE) and 3.1 ± 1.3 mm<sup>2</sup> in the worse eye. The most significant associations with VRQoL scores for distance and near activities were observed in the inner lower and inner left subfields of the BE, respectively. For patients with foveal-sparing GA, the LLVA of the BE stood out as the most influential variable across all VRQoL scales.<h4>Conclusions</h4>The study's findings point toward the pivotal role of GA location, especially the inner lower and inner left subfields of the BE, in relation to VRQoL in GA patients. The LLVA's importance becomes even more pronounced for foveal-sparing patients. These observations highlight the need for health care professionals to better understand the association between lesion location and patient-reported outcomes. This is critical for informing treatment decisions and refining the planning of interventional trials.<h4>Financial disclosure(s)</h4>Proprietary or commercial disclosure may be found in the Footnotes and Disclosures at the end of this article.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:54.261Z"
+    "cachedAt": "2026-05-31T22:15:28.554Z"
   },
   "CHFPEHHK": {
     "key": "CHFPEHHK",
@@ -673,7 +673,7 @@
     "abstractNote": "<h4>Purpose</h4>To better characterize visual function decline and geographic atrophy (GA) progression secondary to age-related macular degeneration (AMD).<h4>Design</h4>Proxima A (NCT02479386)/Proxima B (NCT02399072) were global, prospective, noninterventional, observational clinical trials.<h4>Participants</h4>Eligible patients were aged ≥50 years. Patients in Proxima A had bilateral GA without choroidal neovascularization (CNV) in either eye (N = 295). Patients in Proxima B had GA without CNV in the study eye and CNV±GA in the fellow eye (fellow eye CNV cohort, n = 168) or GA without CNV in the study eye, no CNV/GA in the fellow eye (fellow eye intermediate AMD cohort, n = 32).<h4>Methods</h4>Changes in visual function and imaging/anatomic parameters were evaluated over time using a mixed model for repeated measurement accounting for key baseline characteristics.<h4>Main outcome measures</h4>Prespecified end points included change in GA area from baseline, best-corrected visual acuity (BCVA) score assessed by Early Treatment Diabetic Retinopathy Study (ETDRS), and visual acuity under low-luminance (LLVA).<h4>Results</h4>At 24 months, adjusted mean (standard error) change in GA lesion area from baseline was 3.87 (0.15) mm<sup>2</sup> in participants with bilateral GA (Proxima A), 3.55 (0.16) mm<sup>2</sup> in the fellow eye CNV cohort (Proxima B), and 2.96 (0.25) mm<sup>2</sup> in the fellow eye intermediate AMD cohort (Proxima B). Progression of GA was greater in patients with baseline nonsubfoveal (vs. subfoveal) GA lesions and tended to increase as baseline low-luminance deficit increased (all patients). Conversion to GA or CNV in the fellow eye occurred in 30% and 6.7% of participants, respectively, in the Proxima B intermediate AMD cohort at month 12. Adjusted mean (standard error) changes in BCVA and LLVA (ETDRS letters) in the study eye from baseline to 24 months were -13.88 (1.40) and -7.64 (1.20) in Proxima A, -9.49 (1.29) and -7.57 (1.26) in Proxima B fellow eye CNV cohort, and -11.48 (3.39) and -8.37 (3.02) in Proxima B fellow eye intermediate AMD cohort, respectively.<h4>Conclusions</h4>The prospective Proxima A and B studies highlight the severe functional impact of GA and the rapid rate of GA lesion progression over a 2-year period, including in patients with unilateral GA at baseline.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:55.341Z"
+    "cachedAt": "2026-05-31T22:15:29.611Z"
   },
   "96MPNPLF": {
     "key": "96MPNPLF",
@@ -686,7 +686,7 @@
     "abstractNote": "<h4>Background/objectives</h4>The acceptability of emerging intravitreal therapies for patients with Geographic Atrophy (GA) is currently unknown. This study therefore aimed to investigate the extent to which regular intravitreal injections may be acceptable to GA patients.<h4>Subjects/methods</h4>Thirty UK-based individuals with GA secondary to age-related macular degeneration (AMD), recruited from two London-based hospitals, were interviewed in April-October 2021 regarding acceptability of new GA treatments. Participants responded to a structured questionnaire, as well as open-ended questions in a semi-structured interview. The Theoretical Framework of Acceptability (TFA) informed framework analysis of the qualitative data.<h4>Results</h4>Twenty participants (67%) were female, and median (interquartile range (IQR)) age was 83 (78, 87) years. 37% of participants had foveal centre-involving GA, and better eye median (IQR) logMAR visual acuity was 0.30 (0.17, 0.58). Data suggested that 18 participants (60% (95% CI: 41-79%)) would accept the treatment, despite awareness of potential drawbacks. Eight participants (27% (95% CI: 10-43%) were ambivalent or undecided about treatment, and four (13%) (95% CI: 0-26%) would be unlikely to accept treatment. Reducing the frequency of injections from monthly to every other month increased the proportion of participants who considered the treatments acceptable. Conversely, factors limiting acceptability clustered around: the limited magnitude of treatment efficacy; concerns about side effects or the increased risk of neovascular AMD; and the logistical burden of regular clinic visits for intravitreal injections. Misunderstandings of potential benefits indicate the need for appropriately-designed patient education tools to support decision-making.<h4>Conclusions</h4>Our study suggests a majority of participants would be positive about intravitreal treatment for GA, in spite of potential burdens.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:38:59.663Z"
+    "cachedAt": "2026-05-31T22:15:33.718Z"
   },
   "ESDPF54F": {
     "key": "ESDPF54F",
@@ -699,7 +699,7 @@
     "abstractNote": "Geographic atrophy (GA) remains a leading cause of central vision loss with no known cure. Until recently, there were no approved treatments for GA, often resulting in poor quality of life for affected patients. GA is characterized by atrophic lesions on the retina that may eventually threaten the fovea. Emerging treatments have demonstrated the ability to reduce the rate of lesion growth, potentially preserving visual function. Avacincaptad pegol (ACP; Astellas Pharma Inc), a complement component 5 inhibitor, is an FDA-approved treatment for GA that has been evaluated in numerous clinical trials. Here we review the current clinical trial landscape of ACP, including critical <i>post hoc</i> analyses that suggest ACP may reduce the risk of severe loss among patients with GA.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:00.861Z"
+    "cachedAt": "2026-05-31T22:15:34.767Z"
   },
   "TTVR6XIS": {
     "key": "TTVR6XIS",
@@ -712,7 +712,7 @@
     "abstractNote": "<h4>Purpose</h4>To evaluate disease progression and associated vision changes in patients with geographic atrophy (GA) secondary to age-related macular degeneration (AMD) in 1 eye and GA or neovascular AMD (nAMD) in the fellow eye using a large dataset from routine clinical practice.<h4>Design</h4>Retrospective analysis of clinical data over 24 months.<h4>Subjects</h4>A total of 256 635 patients with GA from the American Academy of Ophthalmology (Academy) IRIS® Registry (Intelligent Research in Sight) Registry (January 2016 to December 2017).<h4>Methods</h4>Patients with ≥ 24 months of follow-up were grouped by fellow-eye status: Cohort 1, GA:GA; Cohort 2, GA:nAMD, each with (subfoveal) and without subfoveal (nonsubfoveal) involvement. Eyes with history of retinal disease other than AMD were excluded. Sensitivity analysis included patients who were managed by retina specialists and had a record of imaging within 30 days of diagnosis.<h4>Main outcome measures</h4>Change in visual acuity (VA), occurrence of new-onset nAMD, and GA progression from nonsubfoveal to subfoveal.<h4>Results</h4>In total, 69 441 patients were included: 44 120 (64%) GA:GA and 25 321 (36%) GA:nAMD. Otherwise eligible patients (57 788) were excluded due to follow-up < 24 months. In both GA:GA and GA:nAMD cohorts, nonsubfoveal study eyes had better mean (standard deviation) VA at index (67 [19.3] and 66 [20.3] letters) than subfoveal eyes (59 [23.9] and 47 [26.9] letters), and 24-month mean VA changes were similar for nonsubfoveal (-7.6 and -6.2) and subfoveal (-7.9 and -6.5) subgroups. Progression to subfoveal GA occurred in 16.7% of nonsubfoveal study eyes in the GA:GA cohort and 12.5% in the GA:nAMD cohort. More new-onset study-eye nAMD was observed in the GA:nAMD (21.6%) versus GA:GA (8.2%) cohorts. Sensitivity analysis supported the robustness of the observations in the study.<h4>Conclusions</h4>This retrospective analysis describes the natural progression of GA lesions and the decline in VA associated with the disease.<h4>Financial disclosures</h4>Proprietary or commercial disclosure may be found after the references.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:01.676Z"
+    "cachedAt": "2026-05-31T22:15:35.551Z"
   },
   "FNEYSGMY": {
     "key": "FNEYSGMY",
@@ -725,7 +725,7 @@
     "abstractNote": "<h4>Purpose</h4>To discuss the clinical trial results leading to the US Food and Drug Administration (FDA) approval of anti-complement therapies for geographic atrophy (GA), perspectives on functional data from the GA clinical trials, and how lessons from the FDA approval may guide future directions for basic and clinical research in AMD.<h4>Design</h4>Selected literature review with analysis and perspective METHODS: We performed a targeted review of publicly available data from the clinical trials of pegcetacoplan and avacincaptad for the treatment of GA, as well as scientific literature on the natural history of GA and the genetics and basic science of complement in AMD.<h4>Results</h4>The approval of pegcetacoplan and avacincaptad was based on an anatomic endpoint of a reduction in the rate of GA expansion over time. However, functional data from 2 phase 3 clinical trials for each drug demonstrated no visual benefit to patients in the treatment groups. Review of the genetics of AMD and the basic science of the role for complement in AMD provides only modest support for targeting complement as treatment for GA expansion, and alternative molecular targets for GA treatment are therefore discussed. Reasons for the disconnect between anatomic and functional outcomes in the clinical trials of anti-complement therapies are discussed, providing insight to guide the configuration of future clinical studies for GA.<h4>Conclusion</h4>Although avacincaptad and pegcetacoplan are our first FDA-approved treatments for GA, results from the clinical trials failed to show any functional improvement after 1 and 2 years, respectively, calling into question whether the drugs represent a \"clinically relevant outcome.\" To improve the chances of more impactful therapies in the future, we provide basic-science rationale for pursuing non-complement targets; emphasize the importance of ongoing clinical research that more closely pins anatomic features of GA to functional outcomes; and provide suggestions for clinical endpoints for future clinical trials on GA.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:02.892Z"
+    "cachedAt": "2026-05-31T22:15:36.609Z"
   },
   "MIRZ86H9": {
     "key": "MIRZ86H9",
@@ -738,7 +738,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:03.688Z"
+    "cachedAt": "2026-05-31T22:15:37.327Z"
   },
   "V5BA9RLV": {
     "key": "V5BA9RLV",
@@ -751,7 +751,7 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:04.781Z"
+    "cachedAt": "2026-05-31T22:15:38.430Z"
   },
   "QFQGC8WX": {
     "key": "QFQGC8WX",
@@ -764,7 +764,7 @@
     "abstractNote": "",
     "hasPdf": true,
     "pdfFile": "QFQGC8WX.pdf",
-    "cachedAt": "2026-05-31T21:39:07.154Z"
+    "cachedAt": "2026-05-31T22:15:41.138Z"
   },
   "ZTQUW44I": {
     "key": "ZTQUW44I",
@@ -777,7 +777,7 @@
     "abstractNote": "With the introduction of therapies to treat geographic atrophy (GA), GA management in clinical practice is now possible. A living systematic review can provide access to timely and robust evidence synthesis. This review found that complement factor 3 and 5 (C3 and C5) inhibition compared to sham likely reduces change in square root GA area at 12 months and untransformed GA area at 24 months. There is likely little to no difference in the rate of systemic treatment-emergent adverse events compared to sham. C3 and C5 inhibition, however, likely does not improve best-corrected visual acuity (BCVA) at 12 months, and the evidence is uncertain regarding change in BCVA at 24 months. Higher rates of ocular treatment emergent adverse effects with complement inhibition occur at 12 months and likely at 24 months. Complement inhibition likely results in new onset neovascular age-related macular degeneration at 12 months. This living meta-analysis will continuously incorporate new evidence.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:07.880Z"
+    "cachedAt": "2026-05-31T22:15:41.871Z"
   },
   "JGG69Z9K": {
     "key": "JGG69Z9K",
@@ -790,7 +790,7 @@
     "abstractNote": "<h4>Purpose</h4>To assess visual function outcomes to 48 weeks in patients with bilateral geographic atrophy (GA) secondary to age-related macular degeneration included in 2 interventional clinical trials: relationship to baseline lesion size, outcomes by baseline lesion characteristic subgroups, and correlation of visual function outcomes with GA area.<h4>Design</h4>The Chroma and Spectri studies (ClinicalTrials.gov identifiers, NCT02247479 and NCT02247531, respectively) were identically designed phase 3, double-masked, multicenter, randomized, sham injection-controlled clinical trials that evaluated intravitreal lampalizumab in GA.<h4>Participants</h4>Eligible patients were 50 years of age or older with well-demarcated bilateral GA (lesion size, 1-7 disc areas) without evidence of or previous treatment for choroidal neovascularization in either eye and best-corrected visual acuity (BCVA) letter score of 49 letters or more (≥1 GA lesion within 250 μm of foveal center if BCVA ≥79 letters).<h4>Methods</h4>Patients (pooled n = 1881) were randomized 2:1:2:1 to lampalizumab every 4 weeks, sham every 4 weeks, lampalizumab every 6 weeks, or sham every 6 weeks. Sham arms were pooled for analysis.<h4>Main outcome measures</h4>Functional end points included change in BCVA from baseline to week 48, low-luminance visual acuity, mesopic microperimetry (number of absolute scotomatous points, mean macular sensitivity), binocular and monocular maximum reading speed, and 2 validated patient-reported outcome measures: Functional Reading Independence Index and 25-item National Eye Institute Visual Function Questionnaire.<h4>Results</h4>Enlargement of GA area, approximately 2 mm<sup>2</sup>/year on average across all treatment groups in each study, was accompanied by overall deterioration in all functional end points. No statistically significant differences were found between lampalizumab or sham arms for changes from baseline in functional assessment scores. Of visual function tests, only microperimetry outcomes were correlated moderately with GA lesion area when assessed cross-sectionally at baseline and week 48.<h4>Conclusions</h4>Chroma and Spectri provide a unique data set of functional end points in GA that are relevant for future clinical trials. Patients with bilateral GA experienced a consistent decline in visual function over 48 weeks, but measures of visual function were not correlated strongly with GA lesion area. It is not possible to predict visual function outcomes from GA lesion size.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:08.599Z"
+    "cachedAt": "2026-05-31T22:15:42.572Z"
   },
   "NFHNUBZN": {
     "key": "NFHNUBZN",
@@ -803,7 +803,7 @@
     "abstractNote": "<h4>Purpose</h4>To characterize and quantify the precursor lesions of geographic atrophy in eyes with age-related macular degeneration.<h4>Methods</h4>A retrospective study of eyes with a minimum of 6-month follow-up before developing geographic atrophy. Evaluations included color and autofluorescence imaging, along with spectral-domain optical coherence tomography, employing definitions from the Consensus of Atrophy Meeting Group and Consensus on Neovascular Age-Related Macular Degeneration Nomenclature Study Group.<h4>Results</h4>There were 55 eyes of 44 patients, who had a mean age of 81.3 years at onset of atrophy; 35 (63.6%) were female. The mean duration of follow-up before and after the advent of geographic atrophy was 4.9 years and 1.2 years, respectively. Geographic atrophy was preceded by collapse of a druse in 41 eyes (74.5%). Of these, 29 (70.7%) were drusenoid pigment epithelial detachments. Among the eyes with regressing drusen, there were 9 with overlying vitelliform deposit, and all had concurrent subretinal drusenoid deposit; however, 19 of 30 eyes with no vitelliform deposit overlying the druse had concurrent subretinal drusenoid deposit, a difference that was significant ( P < 0.001). Regression of subretinal drusenoid deposit was found in 4 eyes (7.3%), regression of vitelliform deposit associated with subretinal drusenoid deposit in 5 (9.1%), and regression of vitelliform deposit in eyes concurrently harboring drusen was found in 3 (5.4%) and regression of vitelliform deposit alone in 2 (3.6%) at the site of eventual development of geographic atrophy.<h4>Conclusion</h4>Geographic atrophy appears to develop from multiple pathways as manifested by the many precursor lesions, all various forms of extracellular deposit, that upon regression, result in a common end-stage appearance.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:09.459Z"
+    "cachedAt": "2026-05-31T22:15:43.294Z"
   },
   "F8VSQHSU": {
     "key": "F8VSQHSU",
@@ -816,7 +816,7 @@
     "abstractNote": "<h4>Importance</h4>Intravitreal complement inhibitors injections (IVCIs) slowed progression of geographic atrophy (GA) lesions in several registration phase 3 trials although without benefit for prespecified secondary functional vision outcomes. Patient acceptability of these therapies needs further exploration.<h4>Objective</h4>To quantify the acceptability of IVCI therapy to United Kingdom patients with GA, assuming vision outcome benefits are expected.<h4>Design, setting, and participants</h4>This cross-sectional study took place at 9 geographically dispersed UK National Health Service centers from April 2023 to April 2024 among 153 participants with treatment-naive GA in at least 1 eye.<h4>Exposures</h4>GA in at least 1 eye.<h4>Main outcomes and measures</h4>Main outcomes were (1) acceptability of IVCI therapy based on completion of validated acceptability questionnaire. Participants were provided with a treatment information leaflet coproduced by a patients with lived experience of GA to inform them about the risks and benefits of IVCI for GA, assuming there were vision outcome benefits to this treatment and (2) response to the EuroQol 5-dimension with a vision bolt-on questionnaire to assess general health and vision-related quality of life. Spearman rank correlations and χ2 tests were used to explore associations between acceptability levels and specific ocular and sociodemographic characteristics.<h4>Results</h4>A total of 153 participants were recruited (93 [60%] women; mean [SD] age, 82 [7]), 57 (38%) of whom had bilateral foveal involvement. Median (IQR) visual acuity with habitual correction in the better-seeing eye and in eyes where neither eye was better or worse was logMAR, 0.30 (0.14-0.54; approximate Snellen equivalent, 20/40) and 0.47 (0.14-0.84; approximate Snellen equivalent, 20/63), respectively. Among the 153 participants, 81 (53%; 95% CI, 45-61) reported IVCIs were very much or extremely acceptable under the theoretical scenarios provided. The proportion finding IVCIs acceptable rose to 82% (95% CI, 76-88) when including those who rated prospective treatment as moderately acceptable. Belief in the perceived effectiveness of the treatment (ρ, 0.52; 95% CI, 0.40-0.63; P < .001) and confidence in their ability to attend the eye clinic regularly (ρ, 0.51; 95% CI, 0.38-0.62; P < .001) correlated with overall acceptability.<h4>Conclusions and relevance</h4>IVCI therapy for GA may be acceptable to most UK patients with GA under the assumption that there are vision outcome benefits to this treatment. While current treatments do not result in vision outcome benefits, perceived effectiveness by patients was associated with acceptability, emphasizing the desire to quantify vision functional benefit concomitant with anatomical slowing of progression.",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:10.807Z"
+    "cachedAt": "2026-05-31T22:15:44.417Z"
   },
   "L6Q8CWN9": {
     "key": "L6Q8CWN9",
@@ -829,6 +829,6 @@
     "abstractNote": "",
     "hasPdf": false,
     "pdfFile": null,
-    "cachedAt": "2026-05-31T21:39:12.111Z"
+    "cachedAt": "2026-05-31T22:15:45.535Z"
   }
 }
