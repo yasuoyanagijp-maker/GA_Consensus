@@ -89,7 +89,7 @@ AMDリスクを持つ患者で、画像精査の適応を判定する。
 
 ### 【Recommendations（エキスパートパネルの推奨）】
 
-- 加齢AMDリスク患者に対し、GAを示唆する質的症状とADL障害をルーチン聴取することを推奨する[1,4]。
+- 加齢AMDリスク患者に対し、GAを示唆する質的症状と日常生活機能（Activities of Daily Living; ADL）障害をルーチン聴取することを推奨する[1,4]。
 - 高リスク例ではOCTによるiRORA/nGA評価を標準化し[7]、6か月ごとの縦断記録を開始することを推奨する。
 - 地域の検診・償還・連携体制を把握し、検査控えの理由（経済・予約・アクセス）を患者と共有することを推奨する[5]。
 
@@ -117,5 +117,4 @@ AMDリスクを持つ患者で、画像精査の適応を判定する。
 6. Guymer RH, et al. Readiness of optometrists in the management of geographic atrophy: a survey of optometrists in Australia. *Clin Exp Optom*. 2025;109:60-66.
 7. Fleckenstein M, Mitchell P, Freund KB, Sadda S, Holz FG, Brittain C, et al. The Progression of Geographic Atrophy Secondary to Age-Related Macular Degeneration. *Ophthalmology*. 2018;125(3):369-390.
 8. Sadda S, Guymer R, Holz F, Schmitz-Valckenberg S, Curcio C, Bird A, et al. Consensus Definition for Atrophy Associated with Age-Related Macular Degeneration on OCT: Classification of Atrophy Report 3. Ophthalmology. 2018;125 4:537-548. doi:10.1016/j.ophtha.2017.09.028.
-9. dark adaptation GA
-10. 
+9. Li Y, Ayton L, Fung A. Visual Function Assessment in Geographic Atrophy: A Review. Clinical & Experimental Ophthalmology. 2026;54:260-274. [doi:10.1111/ceo.70037](https://doi.org/10.1111/ceo.70037).
